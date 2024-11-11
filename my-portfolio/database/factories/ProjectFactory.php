@@ -22,7 +22,7 @@ class ProjectFactory extends Factory
             'description' => fake()->text(),
             'technologies' => 'Laravel,React,Inertia,Tailwind css',
             'project_url' => fake()->url(),
-            'image' => fake()->image(),
+            'image' => fake()->imageUrl(),
             'start_date' => now(),
             'end_date' => now()->addDays(30),
         ];

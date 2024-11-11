@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Project;
 use App\Models\Skill;
+use App\Models\Testimonial;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,6 +22,6 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Skill::factory(10)->create();
+        Testimonial::factory(6)->create();
     }
 }

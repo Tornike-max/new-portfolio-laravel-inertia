@@ -33,7 +33,23 @@ export default function Authenticated({
                                     active={route().current("home")}
                                     className="text-zinc-300 hover:text-zinc-100"
                                 >
-                                    მთავარი
+                                    Home
+                                </NavLink>
+                                <NavLink
+                                    href={route("projects.index")}
+                                    active={route().current("projects.index")}
+                                    className="text-zinc-300 hover:text-zinc-100"
+                                >
+                                    Projects
+                                </NavLink>
+                                <NavLink
+                                    href={route("testimonials.index")}
+                                    active={route().current(
+                                        "testimonials.index"
+                                    )}
+                                    className="text-zinc-300 hover:text-zinc-100"
+                                >
+                                    Testimonials
                                 </NavLink>
                             </div>
                         </div>
@@ -132,11 +148,19 @@ export default function Authenticated({
                     </ResponsiveNavLink>
 
                     <ResponsiveNavLink
-                        href={""}
-                        active={false}
+                        href={route("projects.index")}
+                        active={route().current("projects.index")}
                         className="text-zinc-300 hover:text-zinc-100"
                     >
                         Projects
+                    </ResponsiveNavLink>
+
+                    <ResponsiveNavLink
+                        href={route("testimonials.index")}
+                        active={route().current("testimonials.index")}
+                        className="text-zinc-300 hover:text-zinc-100"
+                    >
+                        Testimonials
                     </ResponsiveNavLink>
                 </div>
 
