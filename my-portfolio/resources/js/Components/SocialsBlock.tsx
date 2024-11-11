@@ -10,7 +10,7 @@ const SocialsBlock = () => (
                 rotate: "2.5deg",
                 scale: 1.1,
             }}
-            className="col-span-6 bg-red-500 md:col-span-3"
+            className="col-span-6 bg-red-500 hover:bg-red-600  md:col-span-3"
         >
             <a
                 href="#"
@@ -24,7 +24,7 @@ const SocialsBlock = () => (
                 rotate: "-2.5deg",
                 scale: 1.1,
             }}
-            className="col-span-6 bg-green-600 md:col-span-3"
+            className="col-span-6 bg-green-500 hover:bg-green-600  md:col-span-3"
         >
             <a
                 href="#"
@@ -38,11 +38,11 @@ const SocialsBlock = () => (
                 rotate: "-2.5deg",
                 scale: 1.1,
             }}
-            className="col-span-6 bg-zinc-50 md:col-span-3"
+            className="col-span-6 bg-purple-500 hover:bg-purple-600  md:col-span-3"
         >
             <a
                 href="#"
-                className="grid h-full place-content-center text-3xl text-black"
+                className="grid h-full place-content-center text-3xl text-white"
             >
                 <FaInstagram />
             </a>
@@ -52,7 +52,7 @@ const SocialsBlock = () => (
                 rotate: "2.5deg",
                 scale: 1.1,
             }}
-            className="col-span-6 bg-blue-500 md:col-span-3"
+            className="col-span-6 bg-blue-500 hover:bg-blue-600 md:col-span-3"
         >
             <a
                 href="#"

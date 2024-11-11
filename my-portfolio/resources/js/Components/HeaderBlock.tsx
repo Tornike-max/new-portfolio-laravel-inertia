@@ -9,14 +9,14 @@ const HeaderBlock = () => (
             className="mb-4 size-14 rounded-full"
         />
         <h1 className="mb-12 text-4xl font-medium leading-tight">
-            Hi, I'm Tom.{" "}
+            Hi, I'm Tornike.{" "}
             <span className="text-zinc-400">
-                I build cool websites like this one.
+                I build full stack applications.
             </span>
         </h1>
         <a
             href="#"
-            className="flex items-center gap-1 text-red-300 hover:underline"
+            className="flex items-center gap-1 text-red-400 hover:text-red-500 hover:underline"
         >
             Contact me <FiArrowRight />
         </a>
