@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Testimonials;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Testimonial;
 
 class TestimonialController extends Controller
 {
     public function index()
     {
-        return inertia('Testimonials/Index');
+        $testimonials = Testimonial::query()->latest()->get();
+        return inertia('Testimonials/Index', compact('testimonials'));
     }
 }

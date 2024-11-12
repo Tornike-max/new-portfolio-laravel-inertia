@@ -64,6 +64,17 @@ export interface Experience {
     user: User;
 }
 
+export interface Testimonial {
+    id: number;
+    author_name: string;
+    author_image: string;
+    content: string;
+    position: string;
+    created_at: string;
+    updated_at: string;
+    user_id: number | null;
+}
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>
 > = T & {
@@ -75,4 +86,5 @@ export type PageProps<
     project?: Project;
     about?: About;
     experiences?: Experience[];
+    testimonials?: Testimonial[];
 };

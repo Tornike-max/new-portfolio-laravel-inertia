@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { Key } from "react";
 
 const Index = ({ auth, about, experiences }: PageProps) => {
-    console.log(experiences);
     return (
         <AuthenticatedLayout
             header={
@@ -26,7 +25,12 @@ const Index = ({ auth, about, experiences }: PageProps) => {
                         transition={{ duration: 0.4 }}
                     >
                         <div className="p-8 w-full flex flex-col sm:flex-row gap-8 bg-zinc-900 rounded-lg shadow-lg">
-                            <div className="relative w-full sm:w-[400px] lg:w-[500px] xl:w-[600px]">
+                            <motion.div
+                                className="relative w-full sm:w-[400px] lg:w-[500px] xl:w-[600px]"
+                                initial={{ scale: 0.8 }}
+                                animate={{ scale: 1 }}
+                                transition={{ duration: 0.5 }}
+                            >
                                 <img
                                     src="./images/my-image.jpg"
                                     alt="image"
@@ -38,7 +42,7 @@ const Index = ({ auth, about, experiences }: PageProps) => {
                                         <span>{about?.user.lastName}</span>
                                     </h1>
                                 </div>
-                            </div>
+                            </motion.div>
 
                             <div className="flex flex-col gap-4 w-full lg:w-[700px]">
                                 <h1 className="text-zinc-100 text-sm sm:text-base md:text-xl lg:text-2xl font-semibold leading-relaxed">
@@ -63,7 +67,13 @@ export default Index;
 
 const ListItem = ({ experience }: { experience: any }) => {
     return (
-        <div className="w-full flex flex-col gap-4 bg-zinc-800 p-4 rounded-lg shadow-md">
+        <motion.div
+            className="w-full flex flex-col gap-4 bg-zinc-800 p-4 rounded-lg shadow-md"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+        >
             <div className="w-full flex justify-between items-center">
                 <div className="w-full flex flex-col gap-1">
                     <h3 className="text-zinc-100 text-sm sm:text-base md:text-lg lg:text-xl font-bold">
@@ -78,6 +88,6 @@ const ListItem = ({ experience }: { experience: any }) => {
                     {formatYear(experience?.end_date) || "Ongoing"}
                 </h3>
             </div>
-        </div>
+        </motion.div>
     );
 };

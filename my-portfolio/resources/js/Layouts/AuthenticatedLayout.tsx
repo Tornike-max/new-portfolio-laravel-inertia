@@ -49,7 +49,66 @@ export default function Authenticated({
                                 >
                                     About
                                 </NavLink>
+                                <NavLink
+                                    href={route("testimonials.index")}
+                                    active={route().current(
+                                        "testimonials.index"
+                                    )}
+                                    className="text-zinc-300 hover:text-zinc-100"
+                                >
+                                    Testimonials
+                                </NavLink>
+                                <NavLink
+                                    href={route("contact.index")}
+                                    active={route().current("contact.index")}
+                                    className="text-zinc-300 hover:text-zinc-100"
+                                >
+                                    Contact
+                                </NavLink>
                             </div>
+                        </div>
+
+                        {/* Mobile toggle button */}
+                        <div className="flex items-center sm:hidden">
+                            <button
+                                onClick={() =>
+                                    setShowingNavigationDropdown(
+                                        !showingNavigationDropdown
+                                    )
+                                }
+                                className="inline-flex items-center justify-center p-2 rounded-md text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 focus:outline-none"
+                            >
+                                <svg
+                                    className="h-6 w-6"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        className={
+                                            !showingNavigationDropdown
+                                                ? "block"
+                                                : "hidden"
+                                        }
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M4 6h16M4 12h16M4 18h16"
+                                    />
+                                    <path
+                                        className={
+                                            showingNavigationDropdown
+                                                ? "block"
+                                                : "hidden"
+                                        }
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M6 18L18 6M6 6l12 12"
+                                    />
+                                </svg>
+                            </button>
                         </div>
 
                         {user?.is_admin === "admin" ? (
@@ -80,7 +139,7 @@ export default function Authenticated({
                                                     >
                                                         <path
                                                             fillRule="evenodd"
-                                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a 1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                                             clipRule="evenodd"
                                                         />
                                                     </svg>
@@ -144,7 +203,6 @@ export default function Authenticated({
                     >
                         Home
                     </ResponsiveNavLink>
-
                     <ResponsiveNavLink
                         href={route("projects.index")}
                         active={route().current("projects.index")}
@@ -152,13 +210,26 @@ export default function Authenticated({
                     >
                         Projects
                     </ResponsiveNavLink>
-
                     <ResponsiveNavLink
                         href={route("about.index")}
                         active={route().current("about.index")}
                         className="text-zinc-300 hover:text-zinc-100"
                     >
                         About
+                    </ResponsiveNavLink>
+                    <ResponsiveNavLink
+                        href={route("testimonials.index")}
+                        active={route().current("testimonials.index")}
+                        className="text-zinc-300 hover:text-zinc-100"
+                    >
+                        Testimonials
+                    </ResponsiveNavLink>
+                    <ResponsiveNavLink
+                        href={route("contact.index")}
+                        active={route().current("contact.index")}
+                        className="text-zinc-300 hover:text-zinc-100"
+                    >
+                        Contact
                     </ResponsiveNavLink>
                 </div>
 
@@ -213,7 +284,7 @@ export default function Authenticated({
             {/* Header */}
             {header && (
                 <header className="bg-zinc-900 shadow">
-                    <div className="mx-auto max-w-8xl px-4 py-6 sm:px-6 lg:px-8">
+                    <div className="mx-auto max-w-8xl py-6 px-4 sm:px-6 lg:px-8">
                         {header}
                     </div>
                 </header>
