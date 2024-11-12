@@ -43,13 +43,11 @@ export default function Authenticated({
                                     Projects
                                 </NavLink>
                                 <NavLink
-                                    href={route("testimonials.index")}
-                                    active={route().current(
-                                        "testimonials.index"
-                                    )}
+                                    href={route("about.index")}
+                                    active={route().current("about.index")}
                                     className="text-zinc-300 hover:text-zinc-100"
                                 >
-                                    Testimonials
+                                    About
                                 </NavLink>
                             </div>
                         </div>
@@ -156,11 +154,11 @@ export default function Authenticated({
                     </ResponsiveNavLink>
 
                     <ResponsiveNavLink
-                        href={route("testimonials.index")}
-                        active={route().current("testimonials.index")}
+                        href={route("about.index")}
+                        active={route().current("about.index")}
                         className="text-zinc-300 hover:text-zinc-100"
                     >
-                        Testimonials
+                        About
                     </ResponsiveNavLink>
                 </div>
 

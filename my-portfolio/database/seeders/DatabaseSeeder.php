@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\About;
+use App\Models\Experience;
 use App\Models\Project;
 use App\Models\Skill;
 use App\Models\Testimonial;
@@ -22,6 +24,6 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Testimonial::factory(6)->create();
+        About::factory(1)->create();
     }
 }

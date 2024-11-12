@@ -43,13 +43,36 @@ export interface Testimonial {
     author_image: string;
 }
 
+export interface About {
+    user: User;
+    phone: string;
+    about: string;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface Experience {
+    id: number;
+    user_id: number;
+    company_name: string;
+    title: string;
+    sphere: string;
+    start_date: string;
+    end_date: string;
+    created_at: string;
+    updated_at: string;
+    user: User;
+}
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>
 > = T & {
     auth: {
         user: User;
     };
-    myData: User;
-    projects: Project[];
-    project: Project;
+    myData?: User;
+    projects?: Project[];
+    project?: Project;
+    about?: About;
+    experiences?: Experience[];
 };
