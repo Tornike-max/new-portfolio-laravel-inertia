@@ -3,11 +3,20 @@ import ContactInputBox from "@/Components/ContactInputBox";
 import ContactTextArea from "@/Components/ContactTextArea";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
-import { Head } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 import { motion } from "framer-motion";
 
 const Index = ({ about }: PageProps) => {
-    console.log(about);
+    const { post, processing, data, setData, errors } = useForm({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+    });
+
+    const handleSubmit = () => {
+        post(route("contact.store"));
+    };
     return (
         <AuthenticatedLayout
             header={
@@ -152,34 +161,56 @@ const Index = ({ about }: PageProps) => {
                                         </div>
                                         <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
                                             <div className="relative rounded-lg bg-zinc-800 p-8 shadow-lg  sm:p-12">
-                                                <form>
+                                                <form onSubmit={handleSubmit}>
                                                     <ContactInputBox
                                                         type="text"
                                                         name="name"
                                                         placeholder="Your Name"
+                                                        setData={setData}
+                                                        error={
+                                                            errors?.name || ""
+                                                        }
                                                     />
                                                     <ContactInputBox
                                                         type="text"
                                                         name="email"
                                                         placeholder="Your Email"
+                                                        setData={setData}
+                                                        error={
+                                                            errors?.email || ""
+                                                        }
                                                     />
                                                     <ContactInputBox
                                                         type="text"
                                                         name="phone"
                                                         placeholder="Your Phone"
+                                                        setData={setData}
+                                                        error={
+                                                            errors?.phone || ""
+                                                        }
                                                     />
                                                     <ContactTextArea
                                                         row={6}
                                                         placeholder="Your Message"
-                                                        name="details"
+                                                        name="message"
                                                         defaultValue=""
+                                                        setData={setData}
+                                                        error={
+                                                            errors?.message ||
+                                                            ""
+                                                        }
                                                     />
                                                     <div>
                                                         <button
                                                             type="submit"
+                                                            disabled={
+                                                                processing
+                                                            }
                                                             className="w-full rounded border p-3 text-zinc-100 transition hover:border-blue-500"
                                                         >
-                                                            Send Message
+                                                            {processing
+                                                                ? "Sending..."
+                                                                : "Send Message"}
                                                         </button>
                                                     </div>
                                                 </form>
