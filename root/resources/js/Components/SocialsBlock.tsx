@@ -1,6 +1,5 @@
-import React from "react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
-import { SiGithub, SiYoutube } from "react-icons/si";
+import { SiGithub, SiLinkedin, SiYoutube } from "react-icons/si";
 import Block from "./Block";
 
 const SocialsBlock = () => (
@@ -10,13 +9,13 @@ const SocialsBlock = () => (
                 rotate: "2.5deg",
                 scale: 1.1,
             }}
-            className="col-span-6 bg-red-500 hover:bg-red-600  md:col-span-3"
+            className="col-span-6 bg-indigo-500 hover:bg-indigo-600  md:col-span-3"
         >
             <a
-                href="#"
+                href="https://www.linkedin.com/in/tornike-ozbetelashvili-1732b2205/"
                 className="grid h-full place-content-center text-3xl text-white"
             >
-                <SiYoutube />
+                <SiLinkedin />
             </a>
         </Block>
         <Block
@@ -27,7 +26,7 @@ const SocialsBlock = () => (
             className="col-span-6 bg-green-500 hover:bg-green-600  md:col-span-3"
         >
             <a
-                href="#"
+                href="https://github.com/Tornike-max"
                 className="grid h-full place-content-center text-3xl text-white"
             >
                 <SiGithub />
@@ -41,7 +40,7 @@ const SocialsBlock = () => (
             className="col-span-6 bg-purple-500 hover:bg-purple-600  md:col-span-3"
         >
             <a
-                href="#"
+                href="https://www.instagram.com/ozbeta_25/"
                 className="grid h-full place-content-center text-3xl text-white"
             >
                 <FaInstagram />
@@ -55,7 +54,7 @@ const SocialsBlock = () => (
             className="col-span-6 bg-blue-500 hover:bg-blue-600 md:col-span-3"
         >
             <a
-                href="#"
+                href="https://www.facebook.com/tornike.ozbetelashvili"
                 className="grid h-full place-content-center text-3xl text-white"
             >
                 <FaFacebookF />

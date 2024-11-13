@@ -37,7 +37,7 @@ export default function Dashboard({ auth, myData }: PageProps) {
                                 >
                                     <HeaderBlock />
                                     <SocialsBlock />
-                                    <AboutBlock />
+                                    <AboutBlock about={myData?.about} />
                                     <LocationBlock />
                                     <EmailListBlock />
                                 </motion.div>

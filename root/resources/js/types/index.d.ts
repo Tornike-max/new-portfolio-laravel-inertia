@@ -5,6 +5,7 @@ export interface User {
     email: string;
     is_admin: string;
     skills: Skill[];
+    about: About;
     email_verified_at?: string;
 }
 

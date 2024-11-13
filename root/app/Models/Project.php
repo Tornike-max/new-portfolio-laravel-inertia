@@ -10,7 +10,15 @@ class Project extends Model
 {
     use HasFactory, Notifiable;
 
-    protected $fillable = [];
+    protected $fillable = [
+        'title',
+        'description',
+        'start_date',
+        'end_date',
+        'technologies',
+        'project_url',
+        'image'
+    ];
 
     public function user()
     {

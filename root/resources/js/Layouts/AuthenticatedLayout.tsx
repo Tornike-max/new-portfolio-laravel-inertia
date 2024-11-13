@@ -115,8 +115,8 @@ export default function Authenticated({
                             <div className="hidden sm:ms-6 sm:flex sm:items-center">
                                 <div className="hidden h-16 space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                     <NavLink
-                                        href={route("home")}
-                                        active={route().current("home")}
+                                        href={route("admin.index")}
+                                        active={route().current("admin.index")}
                                     >
                                         Admin Panel
                                     </NavLink>
