@@ -4,7 +4,7 @@ import { SiAmazon, SiGithub, SiGoogle, SiMeta, SiTwitch } from "react-icons/si";
 import { twMerge } from "tailwind-merge";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { PageProps, Project } from "@/types";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 
 const DELAY_IN_MS = 2500;
 const TRANSITION_DURATION_IN_SECS = 1.5;
@@ -41,55 +41,62 @@ export const Index = ({ auth, myData, projects }: PageProps) => {
                                 {projects?.map((project: Project) => (
                                     <motion.div
                                         key={project?.id}
-                                        className="bg-zinc-800 p-4 rounded-lg shadow-md"
+                                        className="bg-zinc-800 group p-4 rounded-lg shadow-md"
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         transition={{ duration: 0.7 }}
                                     >
-                                        <div className="mb-4">
-                                            {project?.image && (
-                                                <LogoRolodex
-                                                    items={[
-                                                        <LogoItem
-                                                            key={1}
-                                                            className="bg-orange-300 text-neutral-900"
-                                                        >
-                                                            <SiAmazon />
-                                                        </LogoItem>,
-                                                        <LogoItem
-                                                            key={2}
-                                                            className="bg-green-300 text-neutral-900"
-                                                        >
-                                                            <SiGoogle />
-                                                        </LogoItem>,
-                                                        <LogoItem
-                                                            key={3}
-                                                            className="bg-blue-300 text-neutral-900"
-                                                        >
-                                                            <SiMeta />
-                                                        </LogoItem>,
-                                                        <LogoItem
-                                                            key={4}
-                                                            className="bg-white text-black"
-                                                        >
-                                                            <SiGithub />
-                                                        </LogoItem>,
-                                                        <LogoItem
-                                                            key={5}
-                                                            className="bg-purple-300 text-neutral-900"
-                                                        >
-                                                            <SiTwitch />
-                                                        </LogoItem>,
-                                                    ]}
-                                                />
+                                        <Link
+                                            href={route(
+                                                "projects.show",
+                                                project.id
                                             )}
-                                        </div>
-                                        <h4 className="text-lg text-zinc-100">
-                                            {project.title}
-                                        </h4>
-                                        <p className="text-sm text-zinc-400">
-                                            {project.description}
-                                        </p>
+                                        >
+                                            <div className="mb-4 group-hover:scale-105 duration-150 transitin-">
+                                                {project?.image && (
+                                                    <LogoRolodex
+                                                        items={[
+                                                            <LogoItem
+                                                                key={1}
+                                                                className="bg-orange-300 text-neutral-900"
+                                                            >
+                                                                <SiAmazon />
+                                                            </LogoItem>,
+                                                            <LogoItem
+                                                                key={2}
+                                                                className="bg-green-300 text-neutral-900"
+                                                            >
+                                                                <SiGoogle />
+                                                            </LogoItem>,
+                                                            <LogoItem
+                                                                key={3}
+                                                                className="bg-blue-300 text-neutral-900"
+                                                            >
+                                                                <SiMeta />
+                                                            </LogoItem>,
+                                                            <LogoItem
+                                                                key={4}
+                                                                className="bg-white text-black"
+                                                            >
+                                                                <SiGithub />
+                                                            </LogoItem>,
+                                                            <LogoItem
+                                                                key={5}
+                                                                className="bg-purple-300 text-neutral-900"
+                                                            >
+                                                                <SiTwitch />
+                                                            </LogoItem>,
+                                                        ]}
+                                                    />
+                                                )}
+                                            </div>
+                                            <h4 className="text-lg text-zinc-100">
+                                                {project.title}
+                                            </h4>
+                                            <p className="text-sm text-zinc-400">
+                                                {project.description}
+                                            </p>
+                                        </Link>
                                     </motion.div>
                                 ))}
                             </div>
