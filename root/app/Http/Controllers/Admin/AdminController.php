@@ -39,4 +39,10 @@ class AdminController extends Controller
         return to_route('admin.project.edit', $project->id);
         dd($validatedData);
     }
+
+    public function destroy(Project $project)
+    {
+        $project->delete();
+        return to_route(route('admin.index'));
+    }
 }

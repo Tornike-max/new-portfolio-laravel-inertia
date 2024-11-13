@@ -1,9 +1,13 @@
 import { PageProps, Project } from "@/types";
-import { Link } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import { motion } from "framer-motion";
 import React from "react";
 
 const ProjectsTable = ({ projects }: { projects: Project[] }) => {
+    const { delete: destroy, processing } = useForm();
+    const handleDelete = (id: number) => {
+        destroy(route("admin.project.delete", id));
+    };
     return (
         <table className="min-w-full text-sm text-left text-zinc-50">
             <thead className="bg-zinc-900">
@@ -36,12 +40,15 @@ const ProjectsTable = ({ projects }: { projects: Project[] }) => {
                             >
                                 Edit
                             </Link>
-                            <Link
-                                href=""
-                                className="text-red-500 hover:text-red-700"
-                            >
-                                Delete
-                            </Link>
+                            <form onSubmit={() => handleDelete(project.id)}>
+                                <button
+                                    type="submit"
+                                    disabled={processing}
+                                    className="text-red-500 hover:text-red-700"
+                                >
+                                    {processing ? "Deleting..." : "Delete"}
+                                </button>
+                            </form>
                         </td>
                     </motion.tr>
                 ))}
