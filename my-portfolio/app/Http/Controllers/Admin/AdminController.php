@@ -99,4 +99,11 @@ class AdminController extends Controller
         $testimonial->update($validatedData);
         return to_route('admin.testimonial.edit', $testimonial->id);
     }
+
+    public function destroyTestimonial(Testimonial $testimonial)
+    {
+        $testimonial->delete();
+
+        return to_route('admin.index');
+    }
 }

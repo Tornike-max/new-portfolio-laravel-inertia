@@ -20,3 +20,4 @@ Route::delete('/admin/skills/delete/{skill}', [AdminController::class, 'destroyS
 //testimonials
 Route::get('/admin/testimonials/{testimonial}/edit', [AdminController::class, 'editTestimonial'])->middleware('auth')->name('admin.testimonial.edit');
 Route::put('/admin/testimonials/update/{testimonial}', [AdminController::class, 'updateTestimonial'])->middleware('auth')->name('admin.testimonial.update');
+Route::delete('/admin/testimonials/delete/{testimonial}', [AdminController::class, 'destroyTestimonial'])->middleware('auth')->name('admin.testimonial.delete');

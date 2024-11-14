@@ -9,7 +9,7 @@ const TestimonialsTable = ({
 }) => {
     const { delete: destroy, processing } = useForm();
     const handleDelete = (id: number) => {
-        destroy("");
+        destroy(route("admin.testimonial.delete", id));
     };
     return (
         <>
