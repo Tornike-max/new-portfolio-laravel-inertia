@@ -76,6 +76,13 @@ export interface Testimonial {
     user_id: number | null;
 }
 
+export interface Skill {
+    id: number;
+    name: string;
+    level: string;
+    user: User;
+}
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>
 > = T & {
@@ -85,6 +92,7 @@ export type PageProps<
     myData?: User;
     projects?: Project[];
     project?: Project;
+    skills?: Skill[];
     about?: About;
     experiences?: Experience[];
     testimonials?: Testimonial[];

@@ -4,19 +4,24 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProjectResource;
+use App\Http\Resources\SkillResource;
 use App\Models\Project;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        $projects = Project::query()->with('user')->paginate(10);
+        $projects = ProjectResource::collection(Project::query()->with('user')->paginate(10));
+        $skills = SkillResource::collection(Skill::query()->with('user')->paginate(10));
 
-        return inertia('Admin/Index', compact('projects'));
+        return inertia('Admin/Index', compact(['projects', 'skills']));
     }
 
-    public function edit(Project $project)
+
+    //project actions
+    public function editProject(Project $project)
     {
 
         return inertia('Admin/Projects/Edit', [
@@ -24,7 +29,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function update(Request $request, Project $project)
+    public function updateProject(Request $request, Project $project)
     {
         $validatedData = $request->validate([
             'title' => 'nullable',
@@ -40,9 +45,28 @@ class AdminController extends Controller
         dd($validatedData);
     }
 
-    public function destroy(Project $project)
+    public function destroyProject(Project $project)
     {
         $project->delete();
         return to_route(route('admin.index'));
+    }
+
+
+    //skill actions
+    public function editSkill(Skill $skill)
+    {
+        return inertia('Admin/Skills/Edit', compact('skill'));
+    }
+
+    public function updateSkill(Request $request, Skill $skill)
+    {
+        $validatedData = $request->validate([
+            'name' => 'nullable',
+            'level' => 'nullable',
+
+        ]);
+
+        $skill->update($validatedData);
+        return to_route('admin.skill.edit', $skill->id);
     }
 }
