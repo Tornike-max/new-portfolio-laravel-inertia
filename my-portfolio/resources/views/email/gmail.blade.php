@@ -42,13 +42,13 @@
 
 <body>
     <div class="container">
-        <h1>Hi, {{$name}}!</h1>
+        <h1>Hi, I,m {{$data['name']}}!</h1>
         <p>You have received a new message from your portfolio:</p>
         <blockquote style="background-color: #f9f9f9; padding: 10px; border-left: 4px solid #0073e6; margin: 15px 0;">
-            {{$message}}
+            {{$data['message']}}
         </blockquote>
-        <p><strong>From:</strong> {{$email}}</p>
-        <p><strong>Phone Number:</strong> {{$phone}}</p>
+        <p><strong>From:</strong> {{$data['email']}}</p>
+        <p><strong>Phone Number:</strong> {{$data['phone']}}</p>
         <div class="footer">
             <p>Thank you for using my portfolio!</p>
         </div>

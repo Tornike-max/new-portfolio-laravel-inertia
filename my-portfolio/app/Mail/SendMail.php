@@ -40,10 +40,7 @@ class SendMail extends Mailable
         return new Content(
             view: 'email.gmail',
             with: [
-                'name' => $this->data['name'],
-                'email' => $this->data['email'],
-                'message' => $this->data['message'],
-                'phone' => $this->data['phone']
+                'data' => $this->data
             ]
         );
     }

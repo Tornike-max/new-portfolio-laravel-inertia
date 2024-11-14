@@ -1,5 +1,6 @@
 import { FiArrowRight } from "react-icons/fi";
 import Block from "./Block";
+import { Link } from "@inertiajs/react";
 
 const HeaderBlock = () => (
     <Block className="col-span-12 row-span-2 md:col-span-6">
@@ -14,12 +15,12 @@ const HeaderBlock = () => (
                 I build full stack applications.
             </span>
         </h1>
-        <a
-            href="#"
+        <Link
+            href={route("contact.index")}
             className="flex items-center gap-1 text-red-400 hover:text-red-500 hover:underline"
         >
             Contact me <FiArrowRight />
-        </a>
+        </Link>
     </Block>
 );
 

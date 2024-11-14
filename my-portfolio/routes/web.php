@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+Route::get('/projects/show/{project}', [ProjectController::class, 'show'])->name('projects.show');
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
@@ -23,4 +24,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+require __DIR__ . '/admin.php';
 require __DIR__ . '/auth.php';
