@@ -9,4 +9,10 @@ use Illuminate\Notifications\Notifiable;
 class Testimonial extends Model
 {
     use HasFactory, Notifiable;
+
+    protected $fillable = ['author_name', 'position', 'content'];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProjectResource;
 use App\Http\Resources\SkillResource;
+use App\Http\Resources\TestimonialResource;
 use App\Models\Project;
 use App\Models\Skill;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -15,8 +17,9 @@ class AdminController extends Controller
     {
         $projects = ProjectResource::collection(Project::query()->with('user')->paginate(10));
         $skills = SkillResource::collection(Skill::query()->with('user')->paginate(10));
+        $testimonials = TestimonialResource::collection(Testimonial::query()->with('user')->paginate(10));
 
-        return inertia('Admin/Index', compact(['projects', 'skills']));
+        return inertia('Admin/Index', compact(['projects', 'skills', 'testimonials']));
     }
 
 
@@ -68,5 +71,32 @@ class AdminController extends Controller
 
         $skill->update($validatedData);
         return to_route('admin.skill.edit', $skill->id);
+    }
+
+    public function destroySkill(Skill $skill)
+    {
+        $skill->delete();
+        return to_route('admin.index');
+    }
+
+
+    //testimonials
+    public function editTestimonial(Testimonial $testimonial)
+    {
+        return inertia('Admin/Testimonials/Edit', [
+            'testimonial' => new TestimonialResource($testimonial)
+        ]);
+    }
+
+    public function updateTestimonial(Request $request, Testimonial $testimonial)
+    {
+        $validatedData = $request->validate([
+            'author_name' => 'nullable',
+            'position' => 'nullable',
+            'content' => 'nullable'
+        ]);
+
+        $testimonial->update($validatedData);
+        return to_route('admin.testimonial.edit', $testimonial->id);
     }
 }

@@ -1,11 +1,13 @@
 import ProjectsTable from "@/Components/ProjectsTable";
 import SkillsTable from "@/Components/SkillsTable";
+import TestimonialsTable from "@/Components/TestimonialsTable";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { PageProps, Project } from "@/types";
 import { Head } from "@inertiajs/react";
 import { motion } from "framer-motion";
 
-const Index = ({ projects, skills }: PageProps) => {
+const Index = ({ projects, skills, testimonials }: PageProps) => {
+    console.log(testimonials);
     return (
         <AuthenticatedLayout
             header={
@@ -39,6 +41,21 @@ const Index = ({ projects, skills }: PageProps) => {
                         <div className="p-6">
                             <div className="overflow-x-auto bg-zinc-800 p-4 rounded-lg">
                                 <SkillsTable skills={skills?.data} />
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    <motion.div
+                        className="overflow-hidden bg-zinc-900 shadow-sm sm:rounded-lg"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.4 }}
+                    >
+                        <div className="p-6">
+                            <div className="overflow-x-auto bg-zinc-800 p-4 rounded-lg">
+                                <TestimonialsTable
+                                    testimonials={testimonials}
+                                />
                             </div>
                         </div>
                     </motion.div>

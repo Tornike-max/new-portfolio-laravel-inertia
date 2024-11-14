@@ -83,6 +83,44 @@ export interface Skill {
     user: User;
 }
 
+interface Testimonial {
+    id: number;
+    author_image: string;
+    author_name: string;
+    content: string;
+    position: string;
+}
+
+interface Links {
+    first: string;
+    last: string;
+    next: string | null;
+    prev: string | null;
+}
+
+interface Meta {
+    current_page: number;
+    from: number;
+    last_page: number;
+    links: PaginationLink[];
+    path: string;
+    per_page: number;
+    to: number;
+    total: number;
+}
+
+interface PaginationLink {
+    active: boolean;
+    label: string;
+    url: string | null;
+}
+
+interface TestimonialData {
+    data: Testimonial[];
+    links: Links;
+    meta: Meta;
+}
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>
 > = T & {
@@ -95,5 +133,5 @@ export type PageProps<
     skills?: Skill[];
     about?: About;
     experiences?: Experience[];
-    testimonials?: Testimonial[];
+    testimonials?: TestimonialData;
 };
