@@ -17,7 +17,8 @@ class Project extends Model
         'end_date',
         'technologies',
         'project_url',
-        'image'
+        'image',
+        'user_id'
     ];
 
     public function user()

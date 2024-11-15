@@ -10,6 +10,8 @@ use App\Models\Project;
 use App\Models\Skill;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -21,6 +23,36 @@ class AdminController extends Controller
 
         return inertia('Admin/Index', compact(['projects', 'skills', 'testimonials']));
     }
+
+    public function createProject()
+    {
+        return inertia('Admin/Projects/Create');
+    }
+
+    public function storeProject(Request $request)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'technologies' => 'required|string',
+            'project_url' => 'required|string',
+            'start_date' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5000',
+            'end_date' => 'nullable'
+        ]);
+
+        if ($request->file('image')) {
+            $imagePath = $request->file('image')->store('uploads', 'public');
+            $validatedData['image'] = $imagePath;
+        }
+
+        $validatedData['user_id'] = Auth::user()->id;
+
+        Project::create($validatedData);
+
+        return to_route('admin.index');
+    }
+
 
 
     //project actions
@@ -40,12 +72,21 @@ class AdminController extends Controller
             'technologies' => 'nullable',
             'project_url' => 'nullable',
             'start_date' => 'nullable',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5000',
             'end_date' => 'nullable'
         ]);
 
+        if ($request->file('image')) {
+            if ($project->image) {
+                Storage::delete('public/' . $project->image);
+            }
+
+            $imagePath = $request->file('image')->store('uploads', 'public');
+            $validatedData['image'] = $imagePath;
+        }
+
         $project->update($validatedData);
         return to_route('admin.project.edit', $project->id);
-        dd($validatedData);
     }
 
     public function destroyProject(Project $project)
@@ -59,6 +100,11 @@ class AdminController extends Controller
     public function editSkill(Skill $skill)
     {
         return inertia('Admin/Skills/Edit', compact('skill'));
+    }
+
+    public function createSkill(Skill $skill)
+    {
+        return inertia('Admin/Skills/Create');
     }
 
     public function updateSkill(Request $request, Skill $skill)

@@ -6,30 +6,30 @@ import { Project } from "@/types";
 import { Head, useForm } from "@inertiajs/react";
 import { motion } from "framer-motion";
 
-const Edit = ({ project }: { project: Project }) => {
-    const { data, processing, setData, errors, put } = useForm({
-        title: project.title,
-        description: project.description,
-        technologies: project.technologies,
-        project_url: project.project_url,
-        image: project.image,
-        start_date: project.start_date,
-        end_date: project.end_date,
+const Create = () => {
+    const { data, processing, setData, errors, post } = useForm({
+        title: "",
+        description: "",
+        technologies: "",
+        project_url: "",
+        image: "",
+        start_date: "",
+        end_date: "",
     });
 
-    const handleUpdate = () => {
-        put(route("admin.project.update", project.id));
+    const handleStore = () => {
+        post(route("admin.project.store"));
     };
 
     return (
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-zinc-200">
-                    {`Update ${project.title}`}
+                    Create Project
                 </h2>
             }
         >
-            <Head title={`Update-${project.title}`} />
+            <Head title={`Create Project`} />
 
             <div className="py-12">
                 <div className="mx-auto max-w-8xl sm:px-6 lg:px-8">
@@ -41,7 +41,8 @@ const Edit = ({ project }: { project: Project }) => {
                     >
                         <div className="p-6">
                             <form
-                                onSubmit={handleUpdate}
+                                encType="multipart/form-data"
+                                onSubmit={handleStore}
                                 className="w-full flex justify-center items-center flex-col gap-4"
                             >
                                 <div className="w-full flex flex-col justify-center items-start">
@@ -75,9 +76,7 @@ const Edit = ({ project }: { project: Project }) => {
                                                 e.target.value
                                             )
                                         }
-                                    >
-                                        {data.description}
-                                    </textarea>
+                                    ></textarea>
                                     <InputError message={errors.description} />
                                 </div>
 
@@ -202,4 +201,4 @@ const Edit = ({ project }: { project: Project }) => {
     );
 };
 
-export default Edit;
+export default Create;

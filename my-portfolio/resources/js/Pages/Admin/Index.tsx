@@ -1,3 +1,4 @@
+import CreateActions from "@/Components/CreateActions";
 import ProjectsTable from "@/Components/ProjectsTable";
 import SkillsTable from "@/Components/SkillsTable";
 import TestimonialsTable from "@/Components/TestimonialsTable";
@@ -7,7 +8,6 @@ import { Head } from "@inertiajs/react";
 import { motion } from "framer-motion";
 
 const Index = ({ projects, skills, testimonials }: PageProps) => {
-    console.log(testimonials);
     return (
         <AuthenticatedLayout
             header={
@@ -20,6 +20,18 @@ const Index = ({ projects, skills, testimonials }: PageProps) => {
 
             <div className="py-12">
                 <div className="mx-auto max-w-8xl sm:px-6 lg:px-8">
+                    <motion.div
+                        className="overflow-hidden bg-zinc-900 shadow-sm sm:rounded-lg"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.4 }}
+                    >
+                        <div className="p-6">
+                            <div className="overflow-x-auto bg-zinc-800 p-4 rounded-lg">
+                                <CreateActions />
+                            </div>
+                        </div>
+                    </motion.div>
                     <motion.div
                         className="overflow-hidden bg-zinc-900 shadow-sm sm:rounded-lg"
                         initial={{ opacity: 0, x: 20 }}
