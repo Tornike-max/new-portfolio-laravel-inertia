@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ExperienceResource;
 use App\Http\Resources\ProjectResource;
 use App\Http\Resources\SkillResource;
 use App\Http\Resources\TestimonialResource;
+use App\Models\Experience;
 use App\Models\Project;
 use App\Models\Skill;
 use App\Models\Testimonial;
@@ -20,8 +22,9 @@ class AdminController extends Controller
         $projects = ProjectResource::collection(Project::query()->with('user')->paginate(10));
         $skills = SkillResource::collection(Skill::query()->with('user')->paginate(10));
         $testimonials = TestimonialResource::collection(Testimonial::query()->with('user')->paginate(10));
+        $experienceData = ExperienceResource::collection(experience::query()->where('user_id', '=', 1)->with('user')->paginate(10));
 
-        return inertia('Admin/Index', compact(['projects', 'skills', 'testimonials']));
+        return inertia('Admin/Index', compact(['projects', 'skills', 'testimonials', 'experienceData']));
     }
 
     public function createProject()
@@ -189,6 +192,37 @@ class AdminController extends Controller
     public function destroyTestimonial(Testimonial $testimonial)
     {
         $testimonial->delete();
+
+        return to_route('admin.index');
+    }
+
+    public function editExperience(Experience $experience)
+    {
+        $experienceData = new ExperienceResource($experience);
+
+        return inertia('Admin/Experiences/Edit', [
+            'experience' => $experienceData
+        ]);
+    }
+
+    public function updateExperience(Request $request, Experience $experience)
+    {
+        $validatedData = $request->validate([
+            'company_name' => 'nullable|string',
+            'title' => 'nullable|string',
+            'sphere' => 'nullable|string',
+            'start_date' => 'nullable',
+            'end_date' => 'nullable'
+        ]);
+
+
+        $experience->update($validatedData);
+        return to_route('admin.index');
+    }
+
+    public function destroyExperience(Experience $experience)
+    {
+        $experience->delete();
 
         return to_route('admin.index');
     }

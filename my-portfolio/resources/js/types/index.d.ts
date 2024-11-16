@@ -121,6 +121,12 @@ interface TestimonialData {
     meta: Meta;
 }
 
+interface ExperienceData {
+    data: Experience[];
+    links: Links;
+    meta: Meta;
+}
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>
 > = T & {
@@ -134,4 +140,5 @@ export type PageProps<
     about?: About;
     experiences?: Experience[];
     testimonials?: TestimonialData;
+    experienceData?: ExperienceData;
 };
