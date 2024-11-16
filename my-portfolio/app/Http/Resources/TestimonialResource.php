@@ -18,7 +18,7 @@ class TestimonialResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user' => new UserResource($this->whenLoaded($this->user)) ?? null,
+            'user' => new UserResource($this->user),
             'author_name' => $this->author_name,
             'content' => $this->content,
             'position' => $this->position,

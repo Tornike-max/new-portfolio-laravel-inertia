@@ -107,6 +107,20 @@ class AdminController extends Controller
         return inertia('Admin/Skills/Create');
     }
 
+    public function storeSkill(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'level' => 'required|string'
+        ]);
+
+        $validatedData['user_id'] = Auth::user()->id;
+
+        Skill::create($validatedData);
+
+        return to_route('admin.index');
+    }
+
     public function updateSkill(Request $request, Skill $skill)
     {
         $validatedData = $request->validate([
@@ -132,6 +146,32 @@ class AdminController extends Controller
         return inertia('Admin/Testimonials/Edit', [
             'testimonial' => new TestimonialResource($testimonial)
         ]);
+    }
+
+    public function createTestimonial()
+    {
+        return inertia('Admin/Testimonials/Create');
+    }
+
+    public function storeTestimonial(Request $request)
+    {
+        $validatedData = $request->validate([
+            'author_name' => 'required|string',
+            'content' => 'required|string',
+            'position' => 'required|string',
+            'author_image' => 'image|mimes:jpeg,png,jpg,gif|max:5000'
+        ]);
+
+        if ($validatedData['author_image']) {
+            $imagePath = $request->file('author_image')->store('uploads', 'public');
+            $validatedData['author_image'] = $imagePath;
+        };
+
+        $validatedData['user_id'] = Auth::user()->id ?? null;
+
+
+        Testimonial::create($validatedData);
+        return to_route('admin.index');
     }
 
     public function updateTestimonial(Request $request, Testimonial $testimonial)

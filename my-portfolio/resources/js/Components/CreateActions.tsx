@@ -12,13 +12,13 @@ const CreateActions = () => {
             </Link>
             <Link
                 className="py-2 px-3 rounded-lg border hover:bg-indigo-600 duration-150 transition-all"
-                href=""
+                href={route("admin.skill.create")}
             >
                 Create Skill
             </Link>
             <Link
                 className="py-2 px-3 rounded-lg border hover:bg-indigo-600 duration-150 transition-all"
-                href=""
+                href={route("admin.testimonial.create")}
             >
                 Create Testimonial
             </Link>

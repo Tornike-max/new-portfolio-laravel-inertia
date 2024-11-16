@@ -16,11 +16,14 @@ Route::delete('/admin/projects/delete/{project}', [AdminController::class, 'dest
 //skills
 Route::get('/admin/skills/{skill}/edit', [AdminController::class, 'editSkill'])->middleware('auth')->name('admin.skill.edit');
 Route::get('/admin/skills/create', [AdminController::class, 'createSkill'])->middleware('auth')->name('admin.skill.create');
+Route::post('/admin/skills/store', [AdminController::class, 'storeSkill'])->middleware('auth')->name('admin.skill.store');
 Route::put('/admin/skills/update/{skill}', [AdminController::class, 'updateSkill'])->middleware('auth')->name('admin.skill.update');
 Route::delete('/admin/skills/delete/{skill}', [AdminController::class, 'destroySkill'])->middleware('auth')->name('admin.skill.delete');
 
 
 //testimonials
 Route::get('/admin/testimonials/{testimonial}/edit', [AdminController::class, 'editTestimonial'])->middleware('auth')->name('admin.testimonial.edit');
+Route::get('/admin/testimonials/create', [AdminController::class, 'createTestimonial'])->middleware('auth')->name('admin.testimonial.create');
+Route::post('/admin/testimonials/store', [AdminController::class, 'storeTestimonial'])->middleware('auth')->name('admin.testimonial.store');
 Route::put('/admin/testimonials/update/{testimonial}', [AdminController::class, 'updateTestimonial'])->middleware('auth')->name('admin.testimonial.update');
 Route::delete('/admin/testimonials/delete/{testimonial}', [AdminController::class, 'destroyTestimonial'])->middleware('auth')->name('admin.testimonial.delete');

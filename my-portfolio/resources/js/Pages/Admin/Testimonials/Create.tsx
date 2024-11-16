@@ -2,17 +2,20 @@ import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { Testimonial } from "@/types";
 import { Head, useForm } from "@inertiajs/react";
 import { motion } from "framer-motion";
 
 const Create = () => {
     const { data, processing, setData, errors, post } = useForm({
-        name: "",
-        level: "",
+        author_name: "",
+        position: "",
+        content: "",
+        author_image: "",
     });
 
     const handleCreate = () => {
-        post(route("admin.skill.store"));
+        post(route("admin.testimonial.store"));
     };
 
     return (
@@ -35,50 +38,85 @@ const Create = () => {
                     >
                         <div className="p-6">
                             <form
+                                encType="multipart/form-data"
                                 onSubmit={handleCreate}
                                 className="w-full flex justify-center items-center flex-col gap-4"
                             >
                                 <div className="w-full flex flex-col justify-center items-start">
                                     <InputLabel
-                                        children="Name"
+                                        children="Author Name"
                                         className="text-zinc-100"
                                     />
                                     <TextInput
                                         type="text"
                                         name="title"
                                         className="w-full text-zinc-900"
-                                        value={data.name}
+                                        value={data.author_name}
                                         onChange={(e) =>
-                                            setData("name", e.target.value)
+                                            setData(
+                                                "author_name",
+                                                e.target.value
+                                            )
                                         }
                                     />
-                                    <InputError message={errors.name} />
+                                    <InputError message={errors.author_name} />
                                 </div>
 
                                 <div className="w-full flex flex-col justify-center items-start">
                                     <InputLabel
-                                        children="Level"
+                                        children="Position"
                                         className="text-zinc-100"
                                     />
-                                    <select
-                                        name="title"
+                                    <TextInput
+                                        type="text"
+                                        name="position"
                                         className="w-full text-zinc-900 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                                        value={data.level}
+                                        value={data.position}
                                         onChange={(e) =>
-                                            setData("level", e.target.value)
+                                            setData("position", e.target.value)
                                         }
-                                    >
-                                        <option value={"beginner"}>
-                                            Beginner
-                                        </option>
-                                        <option value={"intermediate"}>
-                                            Intermediate
-                                        </option>
-                                        <option value={"profesional"}>
-                                            Profesional
-                                        </option>
-                                    </select>
-                                    <InputError message={errors.level} />
+                                    />
+                                    <InputError message={errors.position} />
+                                </div>
+
+                                <div className="w-full flex flex-col justify-center items-start">
+                                    <InputLabel
+                                        children="Content"
+                                        className="text-zinc-100"
+                                    />
+                                    <textarea
+                                        name="content"
+                                        className="w-full text-zinc-900"
+                                        value={data.content}
+                                        onChange={(e) =>
+                                            setData("content", e.target.value)
+                                        }
+                                    />
+                                    <InputError message={errors.content} />
+                                </div>
+
+                                <div className="w-full flex flex-col justify-center items-start">
+                                    <InputLabel
+                                        children="Author_image"
+                                        className="text-zinc-100"
+                                    />
+                                    <TextInput
+                                        type="file"
+                                        name="author_image"
+                                        className="w-full text-zinc-900 border"
+                                        onChange={(e) => {
+                                            if (
+                                                e.target.files &&
+                                                e.target.files[0]
+                                            ) {
+                                                setData(
+                                                    "author_image",
+                                                    e.target.files[0]
+                                                );
+                                            }
+                                        }}
+                                    />
+                                    <InputError message={errors.author_image} />
                                 </div>
 
                                 <div className="w-full flex  justify-center items-center">
