@@ -22,6 +22,12 @@ const CreateActions = () => {
             >
                 Create Testimonial
             </Link>
+            <Link
+                className="py-2 px-3 rounded-lg border hover:bg-indigo-600 duration-150 transition-all"
+                href={route("admin.experience.create")}
+            >
+                Create Experience
+            </Link>
         </div>
     );
 };

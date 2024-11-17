@@ -12,7 +12,6 @@ const ExperiencesTable = ({
         destroy(route("admin.experience.delete", id));
     };
 
-    console.log(experienceData);
     return (
         <>
             <h1 className="text-lg font-semibold py-2">Experiences</h1>

@@ -30,5 +30,7 @@ Route::delete('/admin/testimonials/delete/{testimonial}', [AdminController::clas
 
 
 Route::get('/admin/experiences/{experience}/edit', [AdminController::class, 'editExperience'])->middleware('auth')->name('admin.experience.edit');
+Route::get('/admin/experiences/create', [AdminController::class, 'createExperience'])->middleware('auth')->name('admin.experience.create');
+Route::post('/admin/experiences/store', [AdminController::class, 'storeExperience'])->middleware('auth')->name('admin.experience.store');
 Route::put('/admin/experiences/update/{experience}', [AdminController::class, 'updateExperience'])->middleware('auth')->name('admin.experience.update');
 Route::delete('/admin/experiences/delete/{experience}', [AdminController::class, 'destroyExperience'])->middleware('auth')->name('admin.experience.delete');

@@ -196,6 +196,28 @@ class AdminController extends Controller
         return to_route('admin.index');
     }
 
+    public function createExperience()
+    {
+        return inertia('Admin/Experiences/Create');
+    }
+
+    public function storeExperience(Request $request)
+    {
+        $validatedData = $request->validate([
+            'company_name' => 'required|string',
+            'title' => 'required|string',
+            'sphere' => 'required|string',
+            'start_date' => 'required',
+            'end_date' => 'required'
+        ]);
+
+        $validatedData['user_id'] = Auth::user()->id;
+
+        Experience::create($validatedData);
+
+        return to_route('admin.index');
+    }
+
     public function editExperience(Experience $experience)
     {
         $experienceData = new ExperienceResource($experience);
