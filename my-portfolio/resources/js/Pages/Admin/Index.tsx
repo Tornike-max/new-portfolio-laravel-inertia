@@ -59,7 +59,7 @@ const Index = ({
                             <div
                                 className={`overflow-x-auto ${
                                     isDark ? "bg-zinc-800" : "bg-zinc-200"
-                                } bg-zinc-800 p-4 rounded-lg`}
+                                }  p-4 rounded-lg`}
                             >
                                 <ProjectsTable projects={projects?.data} />
                             </div>
@@ -77,7 +77,7 @@ const Index = ({
                             <div
                                 className={`overflow-x-auto ${
                                     isDark ? "bg-zinc-800" : "bg-zinc-200"
-                                } bg-zinc-800 p-4 rounded-lg`}
+                                }  p-4 rounded-lg`}
                             >
                                 <SkillsTable skills={skills?.data} />
                             </div>
@@ -96,7 +96,7 @@ const Index = ({
                             <div
                                 className={`overflow-x-auto ${
                                     isDark ? "bg-zinc-800" : "bg-zinc-200"
-                                } bg-zinc-800 p-4 rounded-lg`}
+                                }  p-4 rounded-lg`}
                             >
                                 <TestimonialsTable
                                     testimonials={testimonials}
@@ -117,7 +117,7 @@ const Index = ({
                             <div
                                 className={`overflow-x-auto ${
                                     isDark ? "bg-zinc-800" : "bg-zinc-200"
-                                } bg-zinc-800 p-4 rounded-lg`}
+                                }  p-4 rounded-lg`}
                             >
                                 <ExperiencesTable
                                     experienceData={experienceData}

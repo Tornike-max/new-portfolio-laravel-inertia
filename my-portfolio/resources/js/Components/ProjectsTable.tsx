@@ -7,16 +7,26 @@ import React from "react";
 const ProjectsTable = ({ projects }: { projects: Project[] }) => {
     const { isDark } = useToggleDarkMode();
     const { delete: destroy, processing } = useForm();
+
     const handleDelete = (id: number) => {
-        destroy(route("admin.project.delete", id));
+        if (window.confirm("Are you sure you want to delete this project?")) {
+            destroy(route("admin.project.delete", id));
+        }
     };
+
     return (
         <>
-            <h1 className="text-lg font-semibold py-2">Projects</h1>
+            <h1
+                className={`text-lg font-semibold py-2 ${
+                    isDark ? "text-white" : "text-black"
+                }`}
+            >
+                Projects
+            </h1>
             <table
                 className={`min-w-full text-sm text-left ${
                     isDark ? "text-zinc-50" : "text-zinc-900"
-                } `}
+                }`}
             >
                 <thead className={` ${isDark ? "bg-zinc-900" : "bg-zinc-200"}`}>
                     <tr>
@@ -26,7 +36,7 @@ const ProjectsTable = ({ projects }: { projects: Project[] }) => {
                         <th className="px-6 py-3 font-medium">Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className={`${isDark ? "bg-zinc-800" : "bg-zinc-200"}`}>
                     {projects?.map((project: Project) => (
                         <motion.tr
                             key={project.id}
@@ -34,13 +44,13 @@ const ProjectsTable = ({ projects }: { projects: Project[] }) => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            transition={{
-                                duration: 0.3,
-                            }}
+                            transition={{ duration: 0.3 }}
                         >
-                            <td className="px-6 py-4">{project.id}</td>
+                            <td className="px-6 py-4">{project?.id}</td>
                             <td className="px-6 py-4">{project?.title}</td>
-                            <td className="px-6 py-4">{project.description}</td>
+                            <td className="px-6 py-4">
+                                {project?.description}
+                            </td>
                             <td className="px-6 py-4">
                                 <Link
                                     href={route(
@@ -51,15 +61,13 @@ const ProjectsTable = ({ projects }: { projects: Project[] }) => {
                                 >
                                     Edit
                                 </Link>
-                                <form onSubmit={() => handleDelete(project.id)}>
-                                    <button
-                                        type="submit"
-                                        disabled={processing}
-                                        className="text-red-500 hover:text-red-700"
-                                    >
-                                        {processing ? "Deleting..." : "Delete"}
-                                    </button>
-                                </form>
+                                <button
+                                    onClick={() => handleDelete(project.id)}
+                                    disabled={processing}
+                                    className="text-red-500 hover:text-red-700"
+                                >
+                                    {processing ? "Deleting..." : "Delete"}
+                                </button>
                             </td>
                         </motion.tr>
                     ))}
