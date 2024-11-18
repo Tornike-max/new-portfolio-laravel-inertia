@@ -13,7 +13,6 @@ const SliderToggle = ({
     isDark: boolean;
     toggleDarkMode: () => void;
 }) => {
-    console.log(isDark);
     return (
         <div className="relative flex w-fit items-center rounded-full">
             <button
@@ -24,7 +23,9 @@ const SliderToggle = ({
                 <span className="relative z-10">Light</span>
             </button>
             <button
-                className={`${TOGGLE_CLASSES} text-zinc-100`}
+                className={`${TOGGLE_CLASSES} ${
+                    isDark ? "text-zinc-100" : "text-zinc-600"
+                }`}
                 onClick={() => toggleDarkMode()}
             >
                 <FiSun className="relative z-10 text-lg md:text-sm" />

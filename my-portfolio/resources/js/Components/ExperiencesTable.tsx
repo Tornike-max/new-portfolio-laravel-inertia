@@ -1,3 +1,4 @@
+import useToggleDarkMode from "@/context/useToggleDarkMode";
 import { formatDate } from "@/functions/helpers";
 import { Experience, ExperienceData } from "@/types";
 import { Link, useForm } from "@inertiajs/react";
@@ -8,6 +9,7 @@ const ExperiencesTable = ({
 }: {
     experienceData: ExperienceData | undefined;
 }) => {
+    const { isDark } = useToggleDarkMode();
     const { delete: destroy, processing } = useForm();
     const handleDelete = (id: number) => {
         destroy(route("admin.experience.delete", id));
@@ -16,8 +18,12 @@ const ExperiencesTable = ({
     return (
         <>
             <h1 className="text-lg font-semibold py-2">Experiences</h1>
-            <table className="min-w-full text-sm text-left text-zinc-50">
-                <thead className="bg-zinc-900">
+            <table
+                className={`min-w-full text-sm text-left ${
+                    isDark ? "text-zinc-50" : "text-zinc-900"
+                } `}
+            >
+                <thead className={` ${isDark ? "bg-zinc-900" : "bg-zinc-200"}`}>
                     <tr className="w-full">
                         <th className="px-6 py-3 font-medium">ID</th>
                         <th className="px-6 py-3 font-medium">Company Name</th>

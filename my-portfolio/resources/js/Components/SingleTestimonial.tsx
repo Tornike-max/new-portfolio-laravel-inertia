@@ -1,3 +1,4 @@
+import useToggleDarkMode from "@/context/useToggleDarkMode";
 import DotShape from "./DotShape";
 
 const SingleTestimonial = ({
@@ -15,6 +16,7 @@ const SingleTestimonial = ({
     name: string;
     position: string;
 }) => {
+    const { isDark } = useToggleDarkMode();
     return (
         <div className="relative flex justify-center">
             <div className="relative w-full pb-16 md:w-11/12 lg:w-10/12 xl:w-8/12">
@@ -26,7 +28,11 @@ const SingleTestimonial = ({
                         </span>
                     </div>
                     <div className="w-full">
-                        <div className="text-zinc-100">
+                        <div
+                            className={` ${
+                                isDark ? "text-zinc-100" : "text-zinc-900"
+                            }`}
+                        >
                             <div className="mb-7">
                                 <img src={reviewImg} alt={reviewAlt} />
                             </div>

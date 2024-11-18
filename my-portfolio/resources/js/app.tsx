@@ -5,6 +5,7 @@ import { createInertiaApp } from "@inertiajs/react";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { createRoot } from "react-dom/client";
 import DarkModeProvider from "./context/DarkModeContext";
+import { NextUIProvider } from "@nextui-org/react";
 
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 
@@ -20,7 +21,9 @@ createInertiaApp({
 
         root.render(
             <DarkModeProvider>
-                <App {...props} />
+                <NextUIProvider>
+                    <App {...props} />
+                </NextUIProvider>
             </DarkModeProvider>
         );
     },

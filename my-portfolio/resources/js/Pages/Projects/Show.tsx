@@ -3,17 +3,19 @@ import { PageProps } from "@/types";
 import { Head } from "@inertiajs/react";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
+import { Image } from "@nextui-org/react";
+import { formatImage } from "@/functions/helpers";
+import useToggleDarkMode from "@/context/useToggleDarkMode";
 
 const Show = ({ project }: PageProps) => {
-    console.log(project);
-
+    const { isDark } = useToggleDarkMode();
     const technologies = project?.technologies.split(",");
 
     return (
         <AuthenticatedLayout
             header={
                 <motion.h2
-                    className="text-3xl font-semibold leading-tight text-zinc-200"
+                    className="text-3xl font-semibold leading-tight "
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
@@ -24,10 +26,12 @@ const Show = ({ project }: PageProps) => {
         >
             <Head title="Project" />
 
-            <div className="py-12 bg-zinc-800 min-h-screen">
+            <div className="py-12 min-h-screen">
                 <div className="mx-auto max-w-8xl sm:px-6 lg:px-8">
                     <motion.div
-                        className="overflow-hidden bg-zinc-900 shadow-xl sm:rounded-lg"
+                        className={`overflow-hidden ${
+                            isDark ? "bg-zinc-900" : "bg-zinc-200"
+                        }  shadow-xl sm:rounded-lg`}
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6 }}
@@ -40,15 +44,21 @@ const Show = ({ project }: PageProps) => {
                                     animate={{ opacity: 1 }}
                                     transition={{ duration: 0.5 }}
                                 >
-                                    <img
-                                        src={project.image}
-                                        alt={project.title}
-                                        className="rounded-lg shadow-lg w-full h-96 object-cover"
+                                    <Image
+                                        src={formatImage(project?.image)}
+                                        alt={project?.title}
+                                        isZoomed
+                                        shadow="md"
+                                        className="w-full bg-cover"
                                     />
                                 </motion.div>
                             )}
 
-                            <div className="mb-6 text-lg text-zinc-300">
+                            <div
+                                className={`mb-6 text-lg ${
+                                    isDark ? "text-zinc-300" : "text-zinc-600"
+                                } `}
+                            >
                                 <motion.h3
                                     className="text-2xl font-semibold mb-2"
                                     initial={{ opacity: 0, x: -20 }}
@@ -72,7 +82,13 @@ const Show = ({ project }: PageProps) => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6 }}
                             >
-                                <h4 className="text-xl font-semibold text-zinc-200 mb-2">
+                                <h4
+                                    className={`text-xl font-semibold ${
+                                        isDark
+                                            ? "text-zinc-200"
+                                            : "text-zinc-600"
+                                    }  mb-2`}
+                                >
                                     Technologies Used
                                 </h4>
                                 <ul className="flex flex-wrap gap-2">
@@ -101,10 +117,22 @@ const Show = ({ project }: PageProps) => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6 }}
                             >
-                                <h4 className="text-xl font-semibold text-zinc-200 mb-2">
+                                <h4
+                                    className={`text-xl font-semibold ${
+                                        isDark
+                                            ? "text-zinc-200"
+                                            : "text-zinc-600"
+                                    } mb-2`}
+                                >
                                     Project Duration
                                 </h4>
-                                <p className="text-sm text-zinc-400">
+                                <p
+                                    className={`text-sm ${
+                                        isDark
+                                            ? "text-zinc-400"
+                                            : "text-zinc-500"
+                                    } `}
+                                >
                                     {project?.start_date && project.start_date}-{" "}
                                     {project?.end_date && project.end_date}
                                 </p>
@@ -120,7 +148,11 @@ const Show = ({ project }: PageProps) => {
                                         href={project.project_url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-blue-500 underline hover:text-blue-300"
+                                        className={`${
+                                            isDark
+                                                ? "text-blue-500 hover:text-blue-300"
+                                                : "text-blue-500 hover:text-blue-600"
+                                        } underline `}
                                     >
                                         View Project
                                     </a>

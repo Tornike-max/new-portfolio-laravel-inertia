@@ -21,3 +21,7 @@ export function formatDate(dateString: string): string {
         .getFullYear()
         .toString()}`;
 }
+
+export function formatImage(src: string) {
+    return src.includes("uploads") ? `/storage/${src}` : src;
+}

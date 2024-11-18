@@ -24,7 +24,7 @@ const Create = () => {
     return (
         <AuthenticatedLayout
             header={
-                <h2 className="text-xl font-semibold leading-tight text-zinc-200">
+                <h2 className="text-xl font-semibold leading-tight ">
                     Create Project
                 </h2>
             }

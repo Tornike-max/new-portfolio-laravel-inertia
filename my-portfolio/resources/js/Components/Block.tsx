@@ -1,7 +1,9 @@
+import useToggleDarkMode from "@/context/useToggleDarkMode";
 import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 
 const Block = ({ className, ...rest }) => {
+    const { isDark } = useToggleDarkMode();
     return (
         <motion.div
             variants={{
@@ -23,7 +25,11 @@ const Block = ({ className, ...rest }) => {
                 damping: 50,
             }}
             className={twMerge(
-                "col-span-4 rounded-lg border border-zinc-700 bg-zinc-800 p-6",
+                `col-span-4 rounded-lg border ${
+                    isDark
+                        ? "border-zinc-700 bg-zinc-800"
+                        : "bg-zinc-100 border-zinc-200"
+                }  p-6`,
                 className
             )}
             {...rest}

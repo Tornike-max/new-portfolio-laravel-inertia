@@ -1,12 +1,15 @@
 import ContactDots from "@/Components/ContactDots";
 import ContactInputBox from "@/Components/ContactInputBox";
 import ContactTextArea from "@/Components/ContactTextArea";
+import useToggleDarkMode from "@/context/useToggleDarkMode";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
 import { Head, useForm } from "@inertiajs/react";
 import { motion } from "framer-motion";
 
 const Index = ({ about }: PageProps) => {
+    const { isDark } = useToggleDarkMode();
+
     const { post, processing, data, setData, errors } = useForm({
         name: "",
         email: "",
@@ -20,7 +23,7 @@ const Index = ({ about }: PageProps) => {
     return (
         <AuthenticatedLayout
             header={
-                <h2 className="text-xl font-semibold leading-tight text-zinc-200">
+                <h2 className="text-xl font-semibold leading-tight ">
                     Contact
                 </h2>
             }
@@ -30,7 +33,9 @@ const Index = ({ about }: PageProps) => {
             <div className="py-12">
                 <div className="mx-auto max-w-8xl sm:px-6 lg:px-8">
                     <motion.div
-                        className="overflow-hidden bg-zinc-900 shadow-sm sm:rounded-lg"
+                        className={`overflow-hidden ${
+                            isDark ? "bg-zinc-900" : "bg-zinc-200"
+                        }  shadow-sm sm:rounded-lg`}
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.4 }}
@@ -40,7 +45,13 @@ const Index = ({ about }: PageProps) => {
                                 <div className="container">
                                     <div className="-mx-4 flex flex-wrap lg:justify-between">
                                         <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
-                                            <div className="mb-12 max-w-[570px] lg:mb-0 text-zinc-100">
+                                            <div
+                                                className={`mb-12 max-w-[570px] lg:mb-0 ${
+                                                    isDark
+                                                        ? "text-zinc-100"
+                                                        : "text-zinc-900"
+                                                } `}
+                                            >
                                                 <span className="mb-4 block text-base font-semibold text-primary">
                                                     Contact Me
                                                 </span>
@@ -157,7 +168,13 @@ const Index = ({ about }: PageProps) => {
                                             </div>
                                         </div>
                                         <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
-                                            <div className="relative rounded-lg bg-zinc-800 p-8 shadow-lg  sm:p-12">
+                                            <div
+                                                className={`relative rounded-lg ${
+                                                    isDark
+                                                        ? "bg-zinc-800"
+                                                        : "bg-zinc-100"
+                                                }  p-8 shadow-lg  sm:p-12`}
+                                            >
                                                 <form onSubmit={handleSubmit}>
                                                     <ContactInputBox
                                                         type="text"
@@ -203,7 +220,11 @@ const Index = ({ about }: PageProps) => {
                                                             disabled={
                                                                 processing
                                                             }
-                                                            className="w-full rounded border p-3 text-zinc-100 transition hover:border-blue-500"
+                                                            className={`w-full rounded border p-3 ${
+                                                                isDark
+                                                                    ? "text-zinc-100 border-zinc-200"
+                                                                    : "text-zinc-900 border-zinc-200"
+                                                            }  transition hover:border-blue-500`}
                                                         >
                                                             {processing
                                                                 ? "Sending..."

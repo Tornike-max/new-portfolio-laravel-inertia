@@ -9,12 +9,14 @@ import LocationBlock from "@/Components/LocationBlock";
 import Logo from "@/Components/Logo";
 import SocialsBlock from "@/Components/SocialsBlock";
 import { PageProps } from "@/types";
+import useToggleDarkMode from "@/context/useToggleDarkMode";
 
 export default function Dashboard({ auth, myData }: PageProps) {
+    const { isDark } = useToggleDarkMode();
     return (
         <AuthenticatedLayout
             header={
-                <h2 className="text-xl font-semibold leading-tight text-zinc-200">
+                <h2 className={`text-xl font-semibold leading-tight `}>
                     Dashboard
                 </h2>
             }
@@ -23,7 +25,11 @@ export default function Dashboard({ auth, myData }: PageProps) {
 
             <div className="py-12">
                 <div className="mx-auto max-w-8xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-zinc-900 shadow-sm sm:rounded-lg">
+                    <div
+                        className={`overflow-hidden ${
+                            isDark ? "bg-zinc-900" : "bg-zinc-200"
+                        }  shadow-sm sm:rounded-lg`}
+                    >
                         <div className="p-6 text-gray-900">
                             <div className="min-h-screen w-full text-gray-50">
                                 <Logo />
@@ -35,11 +41,14 @@ export default function Dashboard({ auth, myData }: PageProps) {
                                     }}
                                     className="mx-auto grid max-w-8xl grid-flow-dense grid-cols-12 gap-4"
                                 >
-                                    <HeaderBlock />
+                                    <HeaderBlock isDark={isDark} />
                                     <SocialsBlock />
-                                    <AboutBlock about={myData?.about} />
-                                    <LocationBlock />
-                                    <EmailListBlock />
+                                    <AboutBlock
+                                        about={myData?.about}
+                                        isDark={isDark}
+                                    />
+                                    <LocationBlock isDark={isDark} />
+                                    <EmailListBlock isDark={isDark} />
                                 </motion.div>
                                 <Footer />
                             </div>

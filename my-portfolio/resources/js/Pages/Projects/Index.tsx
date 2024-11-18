@@ -5,15 +5,20 @@ import { twMerge } from "tailwind-merge";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { PageProps, Project } from "@/types";
 import { Head, Link } from "@inertiajs/react";
+import useToggleDarkMode from "@/context/useToggleDarkMode";
+import { Button } from "@nextui-org/button";
+import { Image } from "@nextui-org/react";
+import { formatImage } from "@/functions/helpers";
 
 const DELAY_IN_MS = 2500;
 const TRANSITION_DURATION_IN_SECS = 1.5;
 
 export const Index = ({ auth, myData, projects }: PageProps) => {
+    const { isDark } = useToggleDarkMode();
     return (
         <AuthenticatedLayout
             header={
-                <h2 className="text-xl font-semibold leading-tight text-zinc-200">
+                <h2 className="text-xl font-semibold leading-tight ">
                     Projects
                 </h2>
             }
@@ -23,14 +28,18 @@ export const Index = ({ auth, myData, projects }: PageProps) => {
             <div className="py-12">
                 <div className="mx-auto max-w-8xl sm:px-6 lg:px-8">
                     <motion.div
-                        className="overflow-hidden bg-zinc-900 shadow-sm sm:rounded-lg"
+                        className={`overflow-hidden ${
+                            isDark ? "bg-zinc-900" : "bg-zinc-200"
+                        }  shadow-sm sm:rounded-lg`}
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.4 }}
                     >
                         <div className="p-6">
                             <motion.h3
-                                className="text-2xl text-zinc-200"
+                                className={`text-2xl ${
+                                    isDark ? "text-zinc-200" : "text-zinc-800"
+                                } `}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 1 }}
@@ -41,7 +50,11 @@ export const Index = ({ auth, myData, projects }: PageProps) => {
                                 {projects?.map((project: Project) => (
                                     <motion.div
                                         key={project?.id}
-                                        className="bg-zinc-800 group p-4 rounded-lg shadow-md"
+                                        className={`${
+                                            isDark
+                                                ? "bg-zinc-800 "
+                                                : "bg-zinc-100 "
+                                        }group p-4 rounded-lg shadow-md `}
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         transition={{ duration: 0.7 }}
@@ -52,48 +65,35 @@ export const Index = ({ auth, myData, projects }: PageProps) => {
                                                 project.id
                                             )}
                                         >
-                                            <div className="mb-4 group-hover:scale-105 duration-150 transitin-">
-                                                {project?.image && (
-                                                    <LogoRolodex
-                                                        items={[
-                                                            <LogoItem
-                                                                key={1}
-                                                                className="bg-orange-300 text-neutral-900"
-                                                            >
-                                                                <SiAmazon />
-                                                            </LogoItem>,
-                                                            <LogoItem
-                                                                key={2}
-                                                                className="bg-green-300 text-neutral-900"
-                                                            >
-                                                                <SiGoogle />
-                                                            </LogoItem>,
-                                                            <LogoItem
-                                                                key={3}
-                                                                className="bg-blue-300 text-neutral-900"
-                                                            >
-                                                                <SiMeta />
-                                                            </LogoItem>,
-                                                            <LogoItem
-                                                                key={4}
-                                                                className="bg-white text-black"
-                                                            >
-                                                                <SiGithub />
-                                                            </LogoItem>,
-                                                            <LogoItem
-                                                                key={5}
-                                                                className="bg-purple-300 text-neutral-900"
-                                                            >
-                                                                <SiTwitch />
-                                                            </LogoItem>,
-                                                        ]}
-                                                    />
-                                                )}
+                                            <div className="mb-4 group-hover:scale-105 duration-150 transitin-all flex justify-center items-center">
+                                                <Image
+                                                    src={formatImage(
+                                                        project.image
+                                                    )}
+                                                    alt={project.image}
+                                                    loading="lazy"
+                                                    isZoomed
+                                                    shadow="md"
+                                                    fallbackSrc="https://via.placeholder.com"
+                                                    className="bg-cover max-w-[350px] w-full h-[250px]"
+                                                />
                                             </div>
-                                            <h4 className="text-lg text-zinc-100">
+                                            <h4
+                                                className={`text-lg ${
+                                                    isDark
+                                                        ? "text-zinc-100"
+                                                        : "text-zinc-700"
+                                                } `}
+                                            >
                                                 {project.title}
                                             </h4>
-                                            <p className="text-sm text-zinc-400">
+                                            <p
+                                                className={`text-sm ${
+                                                    isDark
+                                                        ? "text-zinc-400"
+                                                        : "text-zinc-600"
+                                                } `}
+                                            >
                                                 {project.description}
                                             </p>
                                         </Link>

@@ -5,11 +5,13 @@ import { useCallback, useRef } from "react";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SingleTestimonial from "@/Components/SingleTestimonial";
-import { PageProps } from "@/types";
+import { PageProps, Testimonial } from "@/types";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import useToggleDarkMode from "@/context/useToggleDarkMode";
 
 const Index = ({ testimonials }: PageProps) => {
     const sliderRef = useRef(null);
+    const { isDark } = useToggleDarkMode();
 
     const handlePrev = useCallback(() => {
         if (!sliderRef.current) return;
@@ -24,7 +26,7 @@ const Index = ({ testimonials }: PageProps) => {
     return (
         <AuthenticatedLayout
             header={
-                <h2 className="text-xl font-semibold leading-tight text-zinc-200">
+                <h2 className="text-xl font-semibold leading-tight ">
                     Testimonials
                 </h2>
             }
@@ -33,8 +35,16 @@ const Index = ({ testimonials }: PageProps) => {
 
             <div className="py-12">
                 <div className="mx-auto max-w-8xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-zinc-900 shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">
+                    <div
+                        className={`overflow-hidden ${
+                            isDark ? "bg-zinc-900" : "bg-zinc-200"
+                        }  shadow-sm sm:rounded-lg`}
+                    >
+                        <div
+                            className={`p-6 ${
+                                isDark ? "text-gray-100" : "text-gray-900"
+                            } `}
+                        >
                             <motion.div
                                 className="group rounded-xl transition-all duration-500 w-full mx-auto"
                                 initial={{ opacity: 0 }}
@@ -48,7 +58,7 @@ const Index = ({ testimonials }: PageProps) => {
                                             ref={sliderRef}
                                         >
                                             {testimonials?.map(
-                                                (testimonial) => (
+                                                (testimonial: Testimonial) => (
                                                     <SwiperSlide>
                                                         <SingleTestimonial
                                                             image={
