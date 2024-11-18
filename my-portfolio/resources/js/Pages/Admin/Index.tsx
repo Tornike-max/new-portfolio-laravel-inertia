@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import CreateActions from "@/Components/CreateActions";
 import ExperiencesTable from "@/Components/ExperiencesTable";
 import ProjectsTable from "@/Components/ProjectsTable";

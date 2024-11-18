@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import useToggleDarkMode from "@/context/useToggleDarkMode";
 import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";

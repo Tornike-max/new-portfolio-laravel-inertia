@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";

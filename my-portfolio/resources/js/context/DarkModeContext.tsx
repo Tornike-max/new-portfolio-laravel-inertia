@@ -11,7 +11,7 @@ export const DarkModeContext = createContext<ContextTypes | null>(
 );
 
 const DarkModeProvider = ({ children }: { children: React.ReactNode }) => {
-    const [isDark, setIsDark] = useState(false);
+    const [isDark, setIsDark] = useState(true);
     const toggleDarkMode = () => {
         setIsDark((dark) => !dark);
     };
