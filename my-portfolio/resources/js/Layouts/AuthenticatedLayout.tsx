@@ -1,4 +1,5 @@
 import ApplicationLogo from "@/Components/ApplicationLogo";
+import DarkMode from "@/Components/DarkMode";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
@@ -199,35 +200,35 @@ export default function Authenticated({
                     <ResponsiveNavLink
                         href={route("home")}
                         active={route().current("home")}
-                        className="text-zinc-300 hover:text-zinc-100"
+                        className="text-zinc-300 hover:text-zinc-800"
                     >
                         Home
                     </ResponsiveNavLink>
                     <ResponsiveNavLink
                         href={route("projects.index")}
                         active={route().current("projects.index")}
-                        className="text-zinc-300 hover:text-zinc-100"
+                        className="text-zinc-300 hover:text-zinc-800"
                     >
                         Projects
                     </ResponsiveNavLink>
                     <ResponsiveNavLink
                         href={route("about.index")}
                         active={route().current("about.index")}
-                        className="text-zinc-300 hover:text-zinc-100"
+                        className="text-zinc-300 hover:text-zinc-800"
                     >
                         About
                     </ResponsiveNavLink>
                     <ResponsiveNavLink
                         href={route("testimonials.index")}
                         active={route().current("testimonials.index")}
-                        className="text-zinc-300 hover:text-zinc-100"
+                        className="text-zinc-300 hover:text-zinc-800"
                     >
                         Testimonials
                     </ResponsiveNavLink>
                     <ResponsiveNavLink
                         href={route("contact.index")}
                         active={route().current("contact.index")}
-                        className="text-zinc-300 hover:text-zinc-100"
+                        className="text-zinc-300 hover:text-zinc-800"
                     >
                         Contact
                     </ResponsiveNavLink>
@@ -245,9 +246,18 @@ export default function Authenticated({
                         </div>
 
                         <div className="mt-3 space-y-1">
+                            <div className="w-full flex justify-start items-center">
+                                <DarkMode />
+                            </div>
+                            <ResponsiveNavLink
+                                href={route("admin.index")}
+                                className="text-zinc-300 hover:text-zinc-800"
+                            >
+                                Admin Panel
+                            </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 href={route("profile.edit")}
-                                className="text-zinc-300 hover:text-zinc-100"
+                                className="text-zinc-300 hover:text-zinc-800"
                             >
                                 Profile
                             </ResponsiveNavLink>
@@ -255,7 +265,7 @@ export default function Authenticated({
                                 method="post"
                                 href={route("logout")}
                                 as="button"
-                                className="text-zinc-300 hover:text-zinc-100"
+                                className="text-zinc-300 hover:text-zinc-800"
                             >
                                 Log Out
                             </ResponsiveNavLink>
@@ -264,15 +274,18 @@ export default function Authenticated({
                 ) : (
                     <div className="border-t border-zinc-700 pb-1 pt-4">
                         <div className="mt-3 space-y-1">
+                            <div className="w-full flex justify-start items-center">
+                                <DarkMode />
+                            </div>
                             <ResponsiveNavLink
                                 href={route("login")}
-                                className="text-zinc-300 hover:text-zinc-100"
+                                className="text-zinc-300 hover:text-zinc-800"
                             >
                                 Login
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 href={route("register")}
-                                className="text-zinc-300 hover:text-zinc-100"
+                                className="text-zinc-300 hover:text-zinc-800"
                             >
                                 Register
                             </ResponsiveNavLink>

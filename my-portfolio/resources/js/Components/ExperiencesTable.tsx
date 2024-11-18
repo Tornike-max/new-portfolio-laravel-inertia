@@ -1,3 +1,4 @@
+import { formatDate } from "@/functions/helpers";
 import { Experience, ExperienceData } from "@/types";
 import { Link, useForm } from "@inertiajs/react";
 import { motion } from "framer-motion";
@@ -47,7 +48,7 @@ const ExperiencesTable = ({
                                 {experience.sphere}
                             </td>
                             <td className="px-6 py-4 w-[200px] cursor-pointer">
-                                {experience.start_date}
+                                {formatDate(experience.start_date)}
                             </td>
                             <td className="px-6 py-4 flex items-center gap-1">
                                 <Link

@@ -127,6 +127,11 @@ interface ExperienceData {
     meta: Meta;
 }
 
+export type ContextTypes = {
+    toggleDarkMode: () => void;
+    isDark: boolean;
+};
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>
 > = T & {
