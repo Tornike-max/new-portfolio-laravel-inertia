@@ -127,6 +127,12 @@ interface ExperienceData {
     meta: Meta;
 }
 
+interface ProjectsData {
+    data: Project[];
+    links: Links;
+    meta: Meta;
+}
+
 export type ContextTypes = {
     toggleDarkMode: () => void;
     isDark: boolean;
@@ -139,7 +145,7 @@ export type PageProps<
         user: User;
     };
     myData?: User;
-    projects?: Project[];
+    projects?: ProjectsData;
     project?: Project;
     skills?: Skill[];
     about?: About;

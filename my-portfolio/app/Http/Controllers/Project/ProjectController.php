@@ -16,9 +16,9 @@ class ProjectController extends Controller
             $validatedData = $request->validate([
                 'query' => 'required|string|min:2'
             ]);
-            $projects = Project::query()->with('user')->where('user_id', '=', '1')->where('title', 'like', '%' . $validatedData['query'] . '%')->get();
+            $projects = ProjectResource::collection(Project::query()->with('user')->where('user_id', '=', '1')->where('title', 'like', '%' . $validatedData['query'] . '%')->paginate(2));
         } else {
-            $projects = Project::query()->with('user')->where('user_id', '=', '1')->get();
+            $projects = ProjectResource::collection(Project::query()->with('user')->where('user_id', '=', '1')->paginate(2));
         }
         return inertia('Projects/Index', compact('projects'));
     }
