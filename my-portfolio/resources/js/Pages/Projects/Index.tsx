@@ -6,17 +6,39 @@ import { SiAmazon, SiGithub, SiGoogle, SiMeta, SiTwitch } from "react-icons/si";
 import { twMerge } from "tailwind-merge";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { PageProps, Project } from "@/types";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, useForm } from "@inertiajs/react";
 import useToggleDarkMode from "@/context/useToggleDarkMode";
 import { Button } from "@nextui-org/button";
 import { Image } from "@nextui-org/react";
 import { formatImage } from "@/functions/helpers";
+import { FiMail, FiSearch } from "react-icons/fi";
 
 const DELAY_IN_MS = 2500;
 const TRANSITION_DURATION_IN_SECS = 1.5;
 
 export const Index = ({ auth, myData, projects }: PageProps) => {
     const { isDark } = useToggleDarkMode();
+    const { get, processing, data, setData, errors, reset } = useForm({
+        query: "",
+    });
+    let query = window.location.href
+        .slice(window.location.href.lastIndexOf("?") + 1)
+        .split("=")[1];
+
+    const handleSearch = (e: React.ChangeEvent) => {
+        e.preventDefault();
+        get(route("projects.index"));
+    };
+
+    const handleReset = (e: React.MouseEvent) => {
+        e.preventDefault();
+        reset();
+        const url = window.location.origin + window.location.pathname;
+        window.history.replaceState(null, "", url);
+
+        window.location.reload();
+    };
+
     return (
         <AuthenticatedLayout
             header={
@@ -48,6 +70,56 @@ export const Index = ({ auth, myData, projects }: PageProps) => {
                             >
                                 Your Projects
                             </motion.h3>
+                            <form
+                                onSubmit={handleSearch}
+                                className="flex items-center gap-2 my-2"
+                            >
+                                <input
+                                    type="search"
+                                    placeholder="Search..."
+                                    onChange={(e) =>
+                                        setData("query", e.target.value)
+                                    }
+                                    className={`w-full rounded border ${
+                                        isDark
+                                            ? "border-zinc-700 bg-zinc-800 focus:border-red-300"
+                                            : "border-zinc-500 bg-zinc-200 text-zinc-800 focus:border-indigo-300"
+                                    }  px-3 py-1.5 transition-colors  focus:outline-0`}
+                                />
+
+                                {query === undefined ? (
+                                    <button
+                                        type="submit"
+                                        className={`flex items-center gap-2 whitespace-nowrap rounded ${
+                                            isDark
+                                                ? "bg-zinc-50 text-zinc-900 hover:bg-zinc-300"
+                                                : "bg-zinc-900 text-zinc-200 hover:bg-zinc-800"
+                                        }  px-3 py-2 text-sm font-medium transition-colors `}
+                                    >
+                                        {processing ? (
+                                            "Searching..."
+                                        ) : (
+                                            <div className="flex items-center gap-1">
+                                                <FiSearch /> <span>Search</span>
+                                            </div>
+                                        )}
+                                    </button>
+                                ) : (
+                                    <button
+                                        type="button"
+                                        onClick={handleReset}
+                                        className={`flex items-center gap-2 whitespace-nowrap rounded ${
+                                            isDark
+                                                ? "bg-zinc-50 text-zinc-900 hover:bg-zinc-300"
+                                                : "bg-zinc-900 text-zinc-200 hover:bg-zinc-800"
+                                        }  px-3 py-2 text-sm font-medium transition-colors `}
+                                    >
+                                        <div className="flex items-center gap-1">
+                                            X <span>Clear</span>
+                                        </div>
+                                    </button>
+                                )}
+                            </form>
                             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                                 {projects?.map((project: Project) => (
                                     <motion.div
