@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+import AdminNavigation from "@/Components/AdminNavigation";
 import CreateActions from "@/Components/CreateActions";
 import ExperiencesTable from "@/Components/ExperiencesTable";
 import ProjectsTable from "@/Components/ProjectsTable";
@@ -11,12 +12,7 @@ import { PageProps, Project } from "@/types";
 import { Head } from "@inertiajs/react";
 import { motion } from "framer-motion";
 
-const Index = ({
-    projects,
-    skills,
-    testimonials,
-    experienceData,
-}: PageProps) => {
+const Index = ({ projects, skills, testimonials, experiences }: PageProps) => {
     const { isDark } = useToggleDarkMode();
 
     return (
@@ -63,7 +59,7 @@ const Index = ({
                                     isDark ? "bg-zinc-800" : "bg-zinc-200"
                                 }  p-4 rounded-lg`}
                             >
-                                <ProjectsTable projects={projects?.data} />
+                                <ProjectsTable projects={projects.data} />
                             </div>
                         </div>
                     </motion.div>
@@ -81,7 +77,7 @@ const Index = ({
                                     isDark ? "bg-zinc-800" : "bg-zinc-200"
                                 }  p-4 rounded-lg`}
                             >
-                                <SkillsTable skills={skills?.data} />
+                                <SkillsTable skills={skills.data} />
                             </div>
                         </div>
                     </motion.div>
@@ -122,7 +118,7 @@ const Index = ({
                                 }  p-4 rounded-lg`}
                             >
                                 <ExperiencesTable
-                                    experienceData={experienceData}
+                                    experiences={experiences.data}
                                 />
                             </div>
                         </div>

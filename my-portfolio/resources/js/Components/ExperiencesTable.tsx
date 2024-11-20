@@ -4,11 +4,7 @@ import { Experience, ExperienceData } from "@/types";
 import { Link, useForm } from "@inertiajs/react";
 import { motion } from "framer-motion";
 
-const ExperiencesTable = ({
-    experienceData,
-}: {
-    experienceData: ExperienceData | undefined;
-}) => {
+const ExperiencesTable = ({ experiences }: { experiences: Experience[] }) => {
     const { isDark } = useToggleDarkMode();
     const { delete: destroy, processing } = useForm();
     const handleDelete = (id: number) => {
@@ -34,7 +30,7 @@ const ExperiencesTable = ({
                     </tr>
                 </thead>
                 <tbody>
-                    {experienceData?.data.map((experience: Experience) => (
+                    {experiences.map((experience: Experience) => (
                         <motion.tr
                             key={experience.id}
                             className="border-t border-zinc-700"

@@ -1,3 +1,4 @@
+import AdminNavigation from "@/Components/AdminNavigation";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import DarkMode from "@/Components/DarkMode";
 import Dropdown from "@/Components/Dropdown";
@@ -5,6 +6,7 @@ import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import useToggleDarkMode from "@/context/useToggleDarkMode";
 import { Link, usePage } from "@inertiajs/react";
+import { motion } from "framer-motion";
 import { PropsWithChildren, ReactNode, useState } from "react";
 
 export default function Authenticated({
@@ -162,7 +164,9 @@ export default function Authenticated({
                                 <div className="hidden h-16 sm:-my-px sm:ms-10 md:flex">
                                     <NavLink
                                         href={route("admin.index")}
-                                        active={route().current("admin.index")}
+                                        active={window.location.href.includes(
+                                            "admin"
+                                        )}
                                     >
                                         Admin Panel
                                     </NavLink>
@@ -376,6 +380,26 @@ export default function Authenticated({
                         {header}
                     </div>
                 </header>
+            )}
+
+            {window.location.href.includes("admin") && (
+                <div className="mx-auto max-w-8xl">
+                    <div
+                        className={`overflow-hidden ${
+                            isDark ? "bg-zinc-900" : "bg-zinc-100"
+                        }  ${
+                            isDark
+                                ? "border-zinc-700 bg-zinc-900"
+                                : "border-zinc-300 bg-zinc-200"
+                        }`}
+                    >
+                        <div>
+                            <div className={`overflow-hidden rounded-lg`}>
+                                <AdminNavigation />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             )}
 
             {/* Main content */}

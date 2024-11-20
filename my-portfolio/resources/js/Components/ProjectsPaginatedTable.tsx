@@ -1,13 +1,17 @@
 // @ts-nocheck
 
 import useToggleDarkMode from "@/context/useToggleDarkMode";
-import { PageProps, Project } from "@/types";
+import { PageProps, Project, ProjectsData } from "@/types";
 import { Link, useForm } from "@inertiajs/react";
 import { motion } from "framer-motion";
 import React from "react";
 import Pagination from "./Pagination";
 
-const ProjectsTable = ({ projects }: PageProps) => {
+const ProjectsPaginatedTable = ({
+    projectsData,
+}: {
+    projectsData: ProjectsData;
+}) => {
     const { isDark } = useToggleDarkMode();
     const { delete: destroy, processing } = useForm();
 
@@ -21,7 +25,7 @@ const ProjectsTable = ({ projects }: PageProps) => {
         <>
             <h1
                 className={`text-lg font-semibold py-2 ${
-                    isDark ? "text-white" : "text-black"
+                    isDark ? "text-zinc-100" : "text-zinc-800"
                 }`}
             >
                 Projects
@@ -40,7 +44,7 @@ const ProjectsTable = ({ projects }: PageProps) => {
                     </tr>
                 </thead>
                 <tbody className={`${isDark ? "bg-zinc-800" : "bg-zinc-200"}`}>
-                    {projects?.map((project: Project) => (
+                    {projectsData?.data?.map((project: Project) => (
                         <motion.tr
                             key={project.id}
                             className="border-t border-zinc-700"
@@ -76,9 +80,9 @@ const ProjectsTable = ({ projects }: PageProps) => {
                     ))}
                 </tbody>
             </table>
-            <Pagination data={projects} />
+            <Pagination data={projectsData} />
         </>
     );
 };
 
-export default ProjectsTable;
+export default ProjectsPaginatedTable;

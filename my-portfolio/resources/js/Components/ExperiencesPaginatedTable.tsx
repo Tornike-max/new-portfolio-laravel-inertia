@@ -1,39 +1,43 @@
-// @ts-nocheck
-
 import useToggleDarkMode from "@/context/useToggleDarkMode";
-import { PageProps, Skill } from "@/types";
+import { formatDate } from "@/functions/helpers";
+import { Experience, ExperiencesData } from "@/types";
 import { Link, useForm } from "@inertiajs/react";
 import { motion } from "framer-motion";
 import Pagination from "./Pagination";
-import NavLink from "./NavLink";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-const SkillsTable = ({ skills }: PageProps) => {
+const ExperiencesPaginatedTable = ({
+    experiencesData,
+}: {
+    experiencesData: ExperiencesData;
+}) => {
     const { isDark } = useToggleDarkMode();
     const { delete: destroy, processing } = useForm();
     const handleDelete = (id: number) => {
-        destroy(route("admin.skill.delete", id));
+        destroy(route("admin.experience.delete", id));
     };
+
     return (
         <>
-            <h1 className="text-lg font-semibold py-2">skills</h1>
+            <h1 className="text-lg font-semibold py-2">Experiences</h1>
             <table
                 className={`min-w-full text-sm text-left ${
                     isDark ? "text-zinc-50" : "text-zinc-900"
                 } `}
             >
                 <thead className={` ${isDark ? "bg-zinc-900" : "bg-zinc-200"}`}>
-                    <tr>
+                    <tr className="w-full">
                         <th className="px-6 py-3 font-medium">ID</th>
-                        <th className="px-6 py-3 font-medium">Name</th>
-                        <th className="px-6 py-3 font-medium">Level</th>
-                        <th className="px-6 py-3 font-medium">Actions</th>
+                        <th className="px-6 py-3 font-medium">Company Name</th>
+                        <th className="px-6 py-3 font-medium">Title</th>
+                        <th className="px-6 py-3 font-medium">Sphere</th>
+                        <th className="px-6 py-3 font-medium">Start Date</th>
+                        <th className="px-6 py-3 font-medium"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {skills?.map((skill: Skill) => (
+                    {experiencesData?.data.map((experience: Experience) => (
                         <motion.tr
-                            key={skill.id}
+                            key={experience.id}
                             className="border-t border-zinc-700"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -42,17 +46,30 @@ const SkillsTable = ({ skills }: PageProps) => {
                                 duration: 0.3,
                             }}
                         >
-                            <td className="px-6 py-4">{skill.id}</td>
-                            <td className="px-6 py-4">{skill?.name}</td>
-                            <td className="px-6 py-4">{skill.level}</td>
+                            <td className="px-6 py-4">{experience.id}</td>
                             <td className="px-6 py-4">
+                                {experience?.company_name}
+                            </td>
+                            <td className="px-6 py-4">{experience?.title}</td>
+                            <td className="px-6 py-4 w-[200px] cursor-pointer">
+                                {experience.sphere}
+                            </td>
+                            <td className="px-6 py-4 w-[200px] cursor-pointer">
+                                {formatDate(experience.start_date)}
+                            </td>
+                            <td className="px-6 py-4 flex items-center gap-1">
                                 <Link
-                                    href={route("admin.skill.edit", skill.id)}
+                                    href={route(
+                                        "admin.experience.edit",
+                                        experience.id
+                                    )}
                                     className="text-blue-500 hover:text-blue-700 mr-4"
                                 >
                                     Edit
                                 </Link>
-                                <form onSubmit={() => handleDelete(skill.id)}>
+                                <form
+                                    onSubmit={() => handleDelete(experience.id)}
+                                >
                                     <button
                                         type="submit"
                                         disabled={processing}
@@ -66,8 +83,9 @@ const SkillsTable = ({ skills }: PageProps) => {
                     ))}
                 </tbody>
             </table>
+            <Pagination data={experiencesData} />
         </>
     );
 };
 
-export default SkillsTable;
+export default ExperiencesPaginatedTable;

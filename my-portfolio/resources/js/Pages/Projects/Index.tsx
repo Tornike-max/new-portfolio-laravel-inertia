@@ -14,6 +14,7 @@ import { formatImage } from "@/functions/helpers";
 import { FiArrowLeft, FiMail, FiSearch } from "react-icons/fi";
 import NavLink from "@/Components/NavLink";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import Pagination from "@/Components/Pagination";
 
 const DELAY_IN_MS = 2500;
 const TRANSITION_DURATION_IN_SECS = 1.5;
@@ -177,30 +178,7 @@ export const Index = ({ auth, myData, projects }: PageProps) => {
                                 ))}
                             </div>
 
-                            <div className="w-full flex flex-col sm:flex-row justify-between items-center my-4 p-4 bg-white shadow-md rounded-md dark:bg-zinc-800">
-                                <p className="text-gray-700 dark:text-gray-300 text-sm">
-                                    Showing {projects?.meta.from} to{" "}
-                                    {projects?.meta.to}
-                                </p>
-                                <div className="flex items-center gap-2 mt-2 sm:mt-0">
-                                    {projects?.meta.links.map((item) => (
-                                        <NavLink
-                                            key={item.label}
-                                            active={item.active}
-                                            href={item.url}
-                                            className={`px-3 py-2 rounded-md text-sm transition-colors duration-200 `}
-                                        >
-                                            {item.label === "&laquo;" ? (
-                                                <FaArrowLeft />
-                                            ) : item.label === "&raquo;" ? (
-                                                <FaArrowRight />
-                                            ) : (
-                                                item.label
-                                            )}
-                                        </NavLink>
-                                    ))}
-                                </div>
-                            </div>
+                            <Pagination data={projects} />
                         </div>
                     </motion.div>
                 </div>

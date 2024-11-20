@@ -1,19 +1,22 @@
 // @ts-nocheck
 
 import useToggleDarkMode from "@/context/useToggleDarkMode";
-import { PageProps, Skill } from "@/types";
+import { PageProps, skill, Skill, SkillsData, skillsData } from "@/types";
 import { Link, useForm } from "@inertiajs/react";
 import { motion } from "framer-motion";
+import React from "react";
 import Pagination from "./Pagination";
-import NavLink from "./NavLink";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-const SkillsTable = ({ skills }: PageProps) => {
+const SkillsPaginatedData = ({ skillsData }: { skillsData: SkillsData }) => {
     const { isDark } = useToggleDarkMode();
     const { delete: destroy, processing } = useForm();
+
     const handleDelete = (id: number) => {
-        destroy(route("admin.skill.delete", id));
+        if (window.confirm("Are you sure you want to delete this skill?")) {
+            destroy(route("admin.skill.delete", id));
+        }
     };
+
     return (
         <>
             <h1 className="text-lg font-semibold py-2">skills</h1>
@@ -31,7 +34,7 @@ const SkillsTable = ({ skills }: PageProps) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {skills?.map((skill: Skill) => (
+                    {skillsData?.data.map((skill: Skill) => (
                         <motion.tr
                             key={skill.id}
                             className="border-t border-zinc-700"
@@ -66,8 +69,9 @@ const SkillsTable = ({ skills }: PageProps) => {
                     ))}
                 </tbody>
             </table>
+            <Pagination data={skillsData} />
         </>
     );
 };
 
-export default SkillsTable;
+export default SkillsPaginatedData;

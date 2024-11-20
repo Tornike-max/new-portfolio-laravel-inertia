@@ -19,12 +19,21 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $projects = ProjectResource::collection(Project::query()->with('user')->paginate(10));
-        $skills = SkillResource::collection(Skill::query()->with('user')->paginate(10));
-        $testimonials = TestimonialResource::collection(Testimonial::query()->with('user')->paginate(10));
-        $experienceData = ExperienceResource::collection(experience::query()->where('user_id', '=', 1)->with('user')->paginate(10));
+        $projects = ProjectResource::collection(Project::query()->with('user')->get());
+        $skills = SkillResource::collection(Skill::query()->with('user')->get());
+        $testimonials = TestimonialResource::collection(Testimonial::query()->with('user')->get());
+        $experiences = ExperienceResource::collection(experience::query()->where('user_id', '=', 1)->with('user')->get());
 
-        return inertia('Admin/Index', compact(['projects', 'skills', 'testimonials', 'experienceData']));
+        return inertia('Admin/Index', compact(['projects', 'skills', 'testimonials', 'experiences']));
+    }
+
+    public function indexProjects(Request $request)
+    {
+        $projectsData = Project::query()->where('user_id', '=', Auth::user()->id)->with('user')->paginate(10);
+
+        return inertia('Admin/Projects/Index', [
+            'projectsData' => ProjectResource::collection($projectsData)
+        ]);
     }
 
     public function createProject()
@@ -100,6 +109,14 @@ class AdminController extends Controller
 
 
     //skill actions
+    public function indexSkills(Request $request)
+    {
+        $skills = SkillResource::collection(Skill::query()->where('user_id', '=', Auth::user()->id)->with('user')->paginate(10));
+
+        return inertia('Admin/Skills/Index', [
+            'skillsData' => $skills
+        ]);
+    }
     public function editSkill(Skill $skill)
     {
         return inertia('Admin/Skills/Edit', compact('skill'));
@@ -144,6 +161,14 @@ class AdminController extends Controller
 
 
     //testimonials
+
+    public function indexTestimonials(Request $request)
+    {
+        $testimonials = TestimonialResource::collection(Testimonial::query()->with('user')->paginate(10));
+        return inertia('Admin/Testimonials/Index', [
+            'testimonialsData' => $testimonials
+        ]);
+    }
     public function editTestimonial(Testimonial $testimonial)
     {
         return inertia('Admin/Testimonials/Edit', [
@@ -196,6 +221,15 @@ class AdminController extends Controller
         return to_route('admin.index');
     }
 
+
+    //experiences
+    public function indexExperiences(Request $request)
+    {
+        $experiencesData = ExperienceResource::collection(Experience::query()->where('user_id', '=', Auth::user()->id)->paginate(10));
+        return inertia('Admin/Experiences/Index', [
+            'experiencesData' => $experiencesData
+        ]);
+    }
     public function createExperience()
     {
         return inertia('Admin/Experiences/Create');

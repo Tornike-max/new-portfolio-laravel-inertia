@@ -121,7 +121,7 @@ interface TestimonialData {
     meta: Meta;
 }
 
-interface ExperienceData {
+interface ExperiencesData {
     data: Experience[];
     links: Links;
     meta: Meta;
@@ -129,6 +129,12 @@ interface ExperienceData {
 
 interface ProjectsData {
     data: Project[];
+    links: Links;
+    meta: Meta;
+}
+
+interface SkillsData {
+    data: Skill[];
     links: Links;
     meta: Meta;
 }
@@ -145,11 +151,14 @@ export type PageProps<
         user: User;
     };
     myData?: User;
-    projects?: ProjectsData;
+    projects?: Project[];
+    projectsData?: ProjectsData;
     project?: Project;
     skills?: Skill[];
+    skillsData?: SkillsData;
     about?: About;
     experiences?: Experience[];
-    testimonials?: TestimonialData;
-    experienceData?: ExperienceData;
+    experiencesData?: ExperiencesData;
+    testimonials?: Testimonial[];
+    testimonialsData?: TestimonialData;
 };

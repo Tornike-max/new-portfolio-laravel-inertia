@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/admin', [AdminController::class, 'index'])->middleware('auth')->name('admin.index');
 
 //projects
+Route::get('/admin/projects/index', [AdminController::class, 'indexProjects'])->middleware('auth')->name('admin.project.index');
 Route::get('/admin/projects/{project}/edit', [AdminController::class, 'editProject'])->middleware('auth')->name('admin.project.edit');
 Route::get('/admin/projects/create', [AdminController::class, 'createProject'])->middleware('auth')->name('admin.project.create');
 Route::post('/admin/projects/store', [AdminController::class, 'storeProject'])->middleware('auth')->name('admin.project.store');
@@ -14,6 +15,7 @@ Route::delete('/admin/projects/delete/{project}', [AdminController::class, 'dest
 
 
 //skills
+Route::get('/admin/skills/index', [AdminController::class, 'indexSkills'])->middleware('auth')->name('admin.skills.index');
 Route::get('/admin/skills/{skill}/edit', [AdminController::class, 'editSkill'])->middleware('auth')->name('admin.skill.edit');
 Route::get('/admin/skills/create', [AdminController::class, 'createSkill'])->middleware('auth')->name('admin.skill.create');
 Route::post('/admin/skills/store', [AdminController::class, 'storeSkill'])->middleware('auth')->name('admin.skill.store');
@@ -22,6 +24,7 @@ Route::delete('/admin/skills/delete/{skill}', [AdminController::class, 'destroyS
 
 
 //testimonials
+Route::get('/admin/testimonials/index', [AdminController::class, 'indexTestimonials'])->middleware('auth')->name('admin.testimonials.index');
 Route::get('/admin/testimonials/{testimonial}/edit', [AdminController::class, 'editTestimonial'])->middleware('auth')->name('admin.testimonial.edit');
 Route::get('/admin/testimonials/create', [AdminController::class, 'createTestimonial'])->middleware('auth')->name('admin.testimonial.create');
 Route::post('/admin/testimonials/store', [AdminController::class, 'storeTestimonial'])->middleware('auth')->name('admin.testimonial.store');
@@ -29,6 +32,8 @@ Route::put('/admin/testimonials/update/{testimonial}', [AdminController::class, 
 Route::delete('/admin/testimonials/delete/{testimonial}', [AdminController::class, 'destroyTestimonial'])->middleware('auth')->name('admin.testimonial.delete');
 
 
+//experiences
+Route::get('/admin/experiences/index', [AdminController::class, 'indexExperiences'])->middleware('auth')->name('admin.experiences.index');
 Route::get('/admin/experiences/{experience}/edit', [AdminController::class, 'editExperience'])->middleware('auth')->name('admin.experience.edit');
 Route::get('/admin/experiences/create', [AdminController::class, 'createExperience'])->middleware('auth')->name('admin.experience.create');
 Route::post('/admin/experiences/store', [AdminController::class, 'storeExperience'])->middleware('auth')->name('admin.experience.store');
