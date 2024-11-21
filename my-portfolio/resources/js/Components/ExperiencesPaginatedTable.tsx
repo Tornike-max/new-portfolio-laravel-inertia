@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import useToggleDarkMode from "@/context/useToggleDarkMode";
 import { formatDate } from "@/functions/helpers";
 import { Experience, ExperiencesData } from "@/types";

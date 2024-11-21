@@ -1,5 +1,5 @@
 import {
-    ExperienceData,
+    ExperiencesData,
     Links,
     Meta,
     ProjectsData,
@@ -18,7 +18,7 @@ const Pagination = ({
         | {
               data:
                   | ProjectsData
-                  | ExperienceData
+                  | ExperiencesData
                   | TestimonialData
                   | SkillsData
                   | undefined;

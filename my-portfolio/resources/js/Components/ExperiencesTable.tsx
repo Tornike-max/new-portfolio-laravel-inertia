@@ -1,6 +1,6 @@
 import useToggleDarkMode from "@/context/useToggleDarkMode";
 import { formatDate } from "@/functions/helpers";
-import { Experience, ExperienceData } from "@/types";
+import { Experience } from "@/types";
 import { Link, useForm } from "@inertiajs/react";
 import { motion } from "framer-motion";
 
