@@ -20,37 +20,26 @@ const stats = [
 ];
 
 const EmailListBlock = ({ isDark }: { isDark: boolean }) => (
-    <Block className="col-span-12 md:col-span-9">
-        <div className="w-full mx-auto px-4 md:px-8">
-            <ul className="flex flex-col gap-8 items-center justify-center sm:flex-row">
-                {stats.map((item, idx) => (
-                    <li
-                        key={idx}
-                        className={`w-full text-center border hover:scale-105 hover:rotate-2 duration-250 transition-all ${
-                            isDark
-                                ? "bg-zinc-800 border-zinc-700"
-                                : "bg-zinc-100 border-zinc-200"
-                        } px-12 py-4 rounded-lg sm:w-auto shadow-lg hover:shadow-2xl`}
-                    >
-                        <h4
-                            className={`text-4xl ${
-                                isDark ? "text-zinc-200" : "text-zinc-800"
-                            } font-semibold`}
-                        >
-                            {item.data}
-                        </h4>
-                        <p
-                            className={`mt-3 ${
-                                isDark ? "text-zinc-400" : "text-zinc-500"
-                            }  font-medium`}
-                        >
-                            {item.title}
-                        </p>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    </Block>
+    <>
+        {stats.map((stat) => (
+            <Block
+                whileHover={{
+                    rotate: "2.5deg",
+                    scale: 1.1,
+                }}
+                className={`col-span-6 md:col-span-3 ${
+                    isDark
+                        ? "bg-zinc-800 border-zinc-700"
+                        : "bg-zinc-100 border-zinc-200"
+                } flex flex-col justify-center items-center gap-3`}
+            >
+                <h3 className="grid h-full place-content-center text-3xl text-white">
+                    {stat.data}
+                </h3>
+                <p>{stat.title}</p>
+            </Block>
+        ))}
+    </>
 );
 
 export default EmailListBlock;
