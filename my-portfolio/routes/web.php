@@ -14,6 +14,7 @@ Route::get('/projects', [ProjectController::class, 'index'])->name('projects.ind
 Route::get('/projects/show/{project}', [ProjectController::class, 'show'])->name('projects.show');
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
+Route::post('/testimonials/store', [TestimonialController::class, 'store'])->name('testimonials.store');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 

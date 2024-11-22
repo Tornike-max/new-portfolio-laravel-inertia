@@ -10,7 +10,7 @@ import SingleTestimonial from "@/Components/SingleTestimonial";
 import { PageProps, Testimonial } from "@/types";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import useToggleDarkMode from "@/context/useToggleDarkMode";
-import { useDisclosure } from "@nextui-org/react";
+import { Button, useDisclosure } from "@nextui-org/react";
 import TestimonialModal from "@/Components/TestimonialModal";
 
 const Index = ({ testimonials }: PageProps) => {
@@ -41,7 +41,6 @@ const Index = ({ testimonials }: PageProps) => {
         sliderRef.current?.swiper?.slideNext();
     }, []);
 
-    console.log(page);
     return (
         <AuthenticatedLayout
             header={
@@ -131,12 +130,13 @@ const Index = ({ testimonials }: PageProps) => {
                                             </div>
                                         </Swiper>
                                         <div className="text-center mt-8">
-                                            <button
+                                            <Button
                                                 onClick={onOpenChange}
-                                                className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-all"
+                                                variant="solid"
+                                                color="primary"
                                             >
                                                 Add Your Testimonial
-                                            </button>
+                                            </Button>
                                         </div>
                                         <TestimonialModal
                                             isOpen={isOpen}
