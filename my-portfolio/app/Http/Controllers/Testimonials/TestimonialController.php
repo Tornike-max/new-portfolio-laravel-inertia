@@ -23,6 +23,64 @@ class TestimonialController extends Controller
             'author_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5000'
         ]);
 
+        $prohibitedWords = [
+            // English prohibited words
+            'fuck',
+            'shit',
+            'damn',
+            'bitch',
+            'ass',
+            'asshole',
+            'bastard',
+            'crap',
+            'dick',
+            'pussy',
+            'cunt',
+            'slut',
+            'whore',
+            'fag',
+            'jerk',
+            'motherfucker',
+            'goddamn',
+            'blowjob',
+            'tits',
+            'horny',
+            'gangbang',
+            'anal',
+            'dildo',
+            'masturbate',
+            'porn',
+
+            // Georgian prohibited words
+            'დედააფეთქებული',
+            'ახვარი',
+            'ნაბიჭვარი',
+            'პიდარასტი',
+            'ცენზურის მ...',
+            'ბოზი',
+            'მუტელი',
+            'ტრაკი',
+            'დედამოტყნული',
+            'ყლე',
+            'ყლეობაა',
+            'ლაწირაკი',
+            'ხეპრე',
+            'უნამუსო',
+            'კახპა',
+            'ნაგავი',
+            'ქურდი',
+            'ჯაბახანა',
+            'დამპალი',
+            'თახსირი'
+        ];
+
+        foreach ($prohibitedWords  as $word) {
+            if (str_contains($validatedData['content'], $word)) {
+                $validatedData['content'] = 'This message contains inappropriate language. Please avoid using offensive words and try again';
+                break;
+            }
+        }
+
         if ($validatedData['author_image']) {
             $pathName = $request->file('author_image')->store('uploads', 'public');
             $validatedData['author_image'] = $pathName;

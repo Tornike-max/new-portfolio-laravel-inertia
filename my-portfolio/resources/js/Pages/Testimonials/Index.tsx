@@ -29,7 +29,7 @@ const Index = ({ testimonials }: PageProps) => {
             } else {
                 setPage(0);
             }
-        }, 2000);
+        }, 4000);
     }, [page]);
 
     const handlePrev = useCallback(() => {
