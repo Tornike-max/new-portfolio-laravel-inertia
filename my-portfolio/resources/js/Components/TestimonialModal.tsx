@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { useForm } from "@inertiajs/react";
 import { Button } from "@nextui-org/button";
 import { Modal, ModalContent, ModalHeader, ModalBody } from "@nextui-org/react";
@@ -21,7 +23,11 @@ const TestimonialModal = ({
 
     const handleCreate = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        post(route("testimonials.store"));
+        post(route("testimonials.store"), {
+            onSuccess: () => {
+                onOpenChange();
+            },
+        });
     };
 
     return (

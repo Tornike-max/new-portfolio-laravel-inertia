@@ -12,6 +12,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import useToggleDarkMode from "@/context/useToggleDarkMode";
 import { Button, useDisclosure } from "@nextui-org/react";
 import TestimonialModal from "@/Components/TestimonialModal";
+import { formatImage } from "@/functions/helpers";
 
 const Index = ({ testimonials }: PageProps) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -92,9 +93,9 @@ const Index = ({ testimonials }: PageProps) => {
                                                 ) => (
                                                     <SwiperSlide key={index}>
                                                         <SingleTestimonial
-                                                            image={
+                                                            image={formatImage(
                                                                 testimonial.author_image
-                                                            }
+                                                            )}
                                                             reviewImg="https://cdn.tailgrids.com/2.0/image/marketing/images/testimonials/testimonial-01/lineicon.svg"
                                                             reviewAlt="lineicon"
                                                             details={
