@@ -10,14 +10,18 @@ import Logo from "@/Components/Logo";
 import SocialsBlock from "@/Components/SocialsBlock";
 import { PageProps } from "@/types";
 import useToggleDarkMode from "@/context/useToggleDarkMode";
+import { useTranslation } from "react-i18next";
+import { useLaravelReactI18n } from "laravel-react-i18n";
 
 export default function Dashboard({ auth, myData }: PageProps) {
     const { isDark } = useToggleDarkMode();
+    const { t } = useLaravelReactI18n();
+
     return (
         <AuthenticatedLayout
             header={
                 <h2 className={`text-xl font-semibold leading-tight `}>
-                    Dashboard
+                    {t("dashboard")}
                 </h2>
             }
         >

@@ -2,12 +2,19 @@ import AdminNavigation from "@/Components/AdminNavigation";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import DarkMode from "@/Components/DarkMode";
 import Dropdown from "@/Components/Dropdown";
+import LanguageSwitcher from "@/Components/LanguageSwitcher";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import useToggleDarkMode from "@/context/useToggleDarkMode";
-import { Link, usePage } from "@inertiajs/react";
+import { Link, useForm, usePage } from "@inertiajs/react";
 import { motion } from "framer-motion";
-import { PropsWithChildren, ReactNode, useState } from "react";
+import React, {
+    PropsWithChildren,
+    ReactNode,
+    useEffect,
+    useState,
+} from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Authenticated({
     header,
@@ -15,10 +22,10 @@ export default function Authenticated({
 }: PropsWithChildren<{ header?: ReactNode }>) {
     const user = usePage().props.auth.user;
 
+    const { isDark } = useToggleDarkMode();
+
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
-
-    const { isDark } = useToggleDarkMode();
 
     return (
         <div
@@ -375,9 +382,10 @@ export default function Authenticated({
                     <div
                         className={`mx-auto max-w-8xl py-6 px-4 sm:px-6 lg:px-8 ${
                             isDark ? "text-zinc-200" : "text-zinc-800"
-                        }`}
+                        } flex justify-between items-center`}
                     >
                         {header}
+                        <LanguageSwitcher />
                     </div>
                 </header>
             )}

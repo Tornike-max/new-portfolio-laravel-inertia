@@ -21,8 +21,9 @@ const stats = [
 
 const EmailListBlock = ({ isDark }: { isDark: boolean }) => (
     <>
-        {stats.map((stat) => (
+        {stats.map((stat, i) => (
             <Block
+                key={i}
                 whileHover={{
                     rotate: "2.5deg",
                     scale: 1.1,

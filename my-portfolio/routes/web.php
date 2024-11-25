@@ -3,6 +3,7 @@
 use App\Http\Controllers\About\AboutController;
 use App\Http\Controllers\Contact\ContactController;
 use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Locale\LocaleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Project\ProjectController;
 use App\Http\Controllers\Testimonials\TestimonialController;
@@ -18,6 +19,7 @@ Route::post('/testimonials/store', [TestimonialController::class, 'store'])->nam
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
+Route::post('/set-locale', [LocaleController::class, 'setLocale'])->name('lang');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
