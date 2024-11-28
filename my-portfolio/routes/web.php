@@ -19,7 +19,7 @@ Route::post('/testimonials/store', [TestimonialController::class, 'store'])->nam
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
-Route::post('/set-locale', [LocaleController::class, 'setLocale'])->name('lang');
+Route::post('/language/switch', [LocaleController::class, 'switchLanguage'])->name('language.switch');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

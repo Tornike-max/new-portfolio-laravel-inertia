@@ -5,18 +5,20 @@ import { Experience, PageProps } from "@/types";
 import { Head } from "@inertiajs/react";
 import { motion } from "framer-motion";
 import { Key } from "react";
+import { useTranslation } from "react-i18next";
 
 const Index = ({ auth, about, experiences }: PageProps) => {
     const { isDark } = useToggleDarkMode();
+    const { t } = useTranslation();
     return (
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight ">
-                    About Me
+                    {t("aboutMe")}
                 </h2>
             }
         >
-            <Head title="About" />
+            <Head title={t("aboutMe")} />
 
             <div className="py-12">
                 <div className="mx-auto max-w-8xl sm:px-6 lg:px-8">

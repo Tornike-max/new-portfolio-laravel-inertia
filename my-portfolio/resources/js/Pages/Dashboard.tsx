@@ -11,11 +11,10 @@ import SocialsBlock from "@/Components/SocialsBlock";
 import { PageProps } from "@/types";
 import useToggleDarkMode from "@/context/useToggleDarkMode";
 import { useTranslation } from "react-i18next";
-import { useLaravelReactI18n } from "laravel-react-i18n";
 
 export default function Dashboard({ auth, myData }: PageProps) {
     const { isDark } = useToggleDarkMode();
-    const { t } = useLaravelReactI18n();
+    const { t } = useTranslation();
 
     return (
         <AuthenticatedLayout
@@ -25,14 +24,14 @@ export default function Dashboard({ auth, myData }: PageProps) {
                 </h2>
             }
         >
-            <Head title="Dashboard" />
+            <Head title={t("dashboard")} />
 
             <div className="py-12">
                 <div className="mx-auto max-w-8xl sm:px-6 lg:px-8">
                     <div
                         className={`overflow-hidden ${
                             isDark ? "bg-zinc-900" : "bg-zinc-200"
-                        }  shadow-sm sm:rounded-lg`}
+                        } shadow-sm sm:rounded-lg`}
                     >
                         <div className="p-6 text-gray-900">
                             <div className="min-h-screen w-full text-gray-50">

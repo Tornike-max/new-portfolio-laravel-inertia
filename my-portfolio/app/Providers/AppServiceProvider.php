@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
@@ -24,13 +25,8 @@ class AppServiceProvider extends ServiceProvider
     {
         Vite::prefetch(concurrency: 3);
 
-        Inertia::share([
-            'locale' => function () {
-                return App::getLocale();
-            },
-            'translations' => function () {
-                return trans('messages');
-            },
-        ]);
+        $locale = Session::get('locale', config('app.locale'));
+
+        app()->setLocale($locale);
     }
 }

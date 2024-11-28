@@ -6,9 +6,11 @@ import { format } from "date-fns";
 import { Image } from "@nextui-org/react";
 import { formatImage } from "@/functions/helpers";
 import useToggleDarkMode from "@/context/useToggleDarkMode";
+import { useTranslation } from "react-i18next";
 
 const Show = ({ project }: PageProps) => {
     const { isDark } = useToggleDarkMode();
+    const { t } = useTranslation();
     const technologies = project?.technologies.split(",");
 
     return (
@@ -20,11 +22,11 @@ const Show = ({ project }: PageProps) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    Project: {project?.title}
+                    {t("project")}: {project?.title}
                 </motion.h2>
             }
         >
-            <Head title="Project" />
+            <Head title={t("project")} />
 
             <div className="py-12 min-h-screen">
                 <div className="mx-auto max-w-8xl sm:px-6 lg:px-8">
@@ -89,7 +91,7 @@ const Show = ({ project }: PageProps) => {
                                             : "text-zinc-600"
                                     }  mb-2`}
                                 >
-                                    Technologies Used
+                                    {t("TechnologiesUsed")}
                                 </h4>
                                 <ul className="flex flex-wrap gap-2">
                                     {technologies?.map(
@@ -124,7 +126,7 @@ const Show = ({ project }: PageProps) => {
                                             : "text-zinc-600"
                                     } mb-2`}
                                 >
-                                    Project Duration
+                                    {t("projectDuration")}
                                 </h4>
                                 <p
                                     className={`text-sm ${
@@ -154,7 +156,7 @@ const Show = ({ project }: PageProps) => {
                                                 : "text-blue-500 hover:text-blue-600"
                                         } underline `}
                                     >
-                                        View Project
+                                        {t("viewProject")}
                                     </a>
                                 </motion.div>
                             )}

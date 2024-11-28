@@ -15,12 +15,14 @@ import { FiArrowLeft, FiMail, FiSearch } from "react-icons/fi";
 import NavLink from "@/Components/NavLink";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Pagination from "@/Components/Pagination";
+import { useTranslation } from "react-i18next";
 
 const DELAY_IN_MS = 2500;
 const TRANSITION_DURATION_IN_SECS = 1.5;
 
 export const Index = ({ auth, myData, projects }: PageProps) => {
     const { isDark } = useToggleDarkMode();
+    const { t } = useTranslation();
     const { get, processing, data, setData, errors, reset } = useForm({
         query: "",
     });
@@ -41,16 +43,15 @@ export const Index = ({ auth, myData, projects }: PageProps) => {
         window.location.reload();
     };
 
-    console.log(projects);
     return (
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight ">
-                    Projects
+                    {t("projects")}
                 </h2>
             }
         >
-            <Head title="Projects" />
+            <Head title={t("projects")} />
 
             <div className="py-12">
                 <div className="mx-auto max-w-8xl sm:px-6 lg:px-8">
@@ -64,14 +65,14 @@ export const Index = ({ auth, myData, projects }: PageProps) => {
                     >
                         <div className="p-6">
                             <motion.h3
-                                className={`text-2xl ${
+                                className={`text-2xl py-2 ${
                                     isDark ? "text-zinc-200" : "text-zinc-800"
                                 } `}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 1 }}
                             >
-                                Your Projects
+                                {t("myProjects")}
                             </motion.h3>
                             <form
                                 onSubmit={handleSearch}
@@ -79,7 +80,7 @@ export const Index = ({ auth, myData, projects }: PageProps) => {
                             >
                                 <input
                                     type="search"
-                                    placeholder="Search..."
+                                    placeholder={`${t("search")}...`}
                                     onChange={(e) =>
                                         setData("query", e.target.value)
                                     }
@@ -103,7 +104,8 @@ export const Index = ({ auth, myData, projects }: PageProps) => {
                                             "Searching..."
                                         ) : (
                                             <div className="flex items-center gap-1">
-                                                <FiSearch /> <span>Search</span>
+                                                <FiSearch />{" "}
+                                                <span>{t("search")}</span>
                                             </div>
                                         )}
                                     </button>
@@ -118,7 +120,7 @@ export const Index = ({ auth, myData, projects }: PageProps) => {
                                         }  px-3 py-2 text-sm font-medium transition-colors `}
                                     >
                                         <div className="flex items-center gap-1">
-                                            X <span>Clear</span>
+                                            X <span>{t("clear")}</span>
                                         </div>
                                     </button>
                                 )}

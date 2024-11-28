@@ -4,21 +4,18 @@ namespace App\Http\Controllers\Locale;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
 
 class LocaleController extends Controller
 {
-    public function setLocale(Request $request)
+    public function switchLanguage(Request $request)
     {
-        $locale = $request->input('lang', 'en');
+        $locale = $request->input('lang');
+
         if (in_array($locale, ['en', 'ka'])) {
-            Session::put('locale', $locale);
-            App::setLocale($locale);
+            session(['locale' => $locale]);
+            app()->setLocale($locale);
         }
 
-        return back();
-
-        return back();
+        return redirect()->back();
     }
 }

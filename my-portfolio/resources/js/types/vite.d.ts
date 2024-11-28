@@ -1,4 +1,5 @@
 declare module "laravel-react-i18n/vite" {
-    const i18n: any;
+    import { Plugin } from "vite";
+    const i18n: () => Plugin;
     export default i18n;
 }
