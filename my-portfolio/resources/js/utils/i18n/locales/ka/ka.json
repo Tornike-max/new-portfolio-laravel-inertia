@@ -60,5 +60,6 @@
     "rememberMe": "დამიმახსოვრე",
     "forgotPassword": "დაგავიწყდა პაროლი?",
     "alreadyRegistered": "ხართ უკვე დარეგისტრირებული?",
-    "name": "სახელი"
+    "name": "სახელი",
+    "lastName": "გვარი"
 }

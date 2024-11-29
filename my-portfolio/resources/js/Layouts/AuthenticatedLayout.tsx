@@ -167,7 +167,60 @@ export default function Authenticated({
                             </button>
                         </div>
 
-                        {user?.is_admin === "admin" ? (
+                        {user?.is_admin === "user" && (
+                            <div className="hidden sm:ms-6 md:flex sm:items-center gap-2">
+                                <div className="hidden h-16 md:flex ">
+                                    <DarkMode />
+                                </div>
+                                <div className="relative ms-3">
+                                    <Dropdown>
+                                        <Dropdown.Trigger>
+                                            <span className="inline-flex rounded-md">
+                                                <button
+                                                    type="button"
+                                                    className={`inline-flex items-center rounded-md border border-transparent text-sm font-medium leading-4 ${
+                                                        isDark
+                                                            ? "text-zinc-50 hover:text-zinc-200"
+                                                            : "text-zinc-600 hover:text-zinc-800"
+                                                    } text-zinc-5 transition duration-150 ease-in-out  focus:outline-none`}
+                                                >
+                                                    {user?.name}
+
+                                                    <svg
+                                                        className="-me-0.5 ms-2 h-4 w-4"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 20 20"
+                                                        fill="currentColor"
+                                                    >
+                                                        <path
+                                                            fillRule="evenodd"
+                                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a 1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                            clipRule="evenodd"
+                                                        />
+                                                    </svg>
+                                                </button>
+                                            </span>
+                                        </Dropdown.Trigger>
+
+                                        <Dropdown.Content>
+                                            <Dropdown.Link
+                                                href={route("profile.edit")}
+                                            >
+                                                {t("navbarProfile")}
+                                            </Dropdown.Link>
+                                            <Dropdown.Link
+                                                href={route("logout")}
+                                                method="post"
+                                                as="button"
+                                            >
+                                                {t("logout")}
+                                            </Dropdown.Link>
+                                        </Dropdown.Content>
+                                    </Dropdown>
+                                </div>
+                            </div>
+                        )}
+                        {user?.is_admin === "admin" && (
                             <div className="hidden sm:ms-6 md:flex sm:items-center gap-2">
                                 <div className="hidden h-16 sm:-my-px sm:ms-10 md:flex">
                                     <NavLink
@@ -229,7 +282,9 @@ export default function Authenticated({
                                     </Dropdown>
                                 </div>
                             </div>
-                        ) : (
+                        )}
+
+                        {!user && (
                             <div className="hidden sm:ms-2 md:flex sm:items-center gap-2">
                                 <div className="hidden h-16 sm:-my-px sm:ms-2 md:flex">
                                     <NavLink
@@ -301,7 +356,52 @@ export default function Authenticated({
                     </ResponsiveNavLink>
                 </div>
 
-                {user?.is_admin === "admin" ? (
+                {user?.is_admin === "user" && (
+                    <div
+                        className={`border-t ${
+                            isDark ? "border-zinc-700" : "border-zinc-200"
+                        }  pb-1 pt-4`}
+                    >
+                        <div className="px-4">
+                            <div
+                                className={`text-base font-medium ${
+                                    isDark ? "text-zinc-100" : "text-zinc-800"
+                                } `}
+                            >
+                                {user?.name}
+                            </div>
+                            <div
+                                className={`text-sm font-medium ${
+                                    isDark ? "text-zinc-400" : "text-zinc-600"
+                                }`}
+                            >
+                                {user?.email}
+                            </div>
+                        </div>
+
+                        <div className="mt-3 space-y-1">
+                            <div className="w-full flex justify-start items-center px-2">
+                                <DarkMode />
+                            </div>
+
+                            <ResponsiveNavLink
+                                href={route("profile.edit")}
+                                className="text-zinc-300 hover:text-zinc-800"
+                            >
+                                {t("navbarProfile")}
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink
+                                method="post"
+                                href={route("logout")}
+                                as="button"
+                                className="text-zinc-300 hover:text-zinc-800"
+                            >
+                                {t("logout")}
+                            </ResponsiveNavLink>
+                        </div>
+                    </div>
+                )}
+                {user?.is_admin === "admin" && (
                     <div
                         className={`border-t ${
                             isDark ? "border-zinc-700" : "border-zinc-200"
@@ -350,7 +450,8 @@ export default function Authenticated({
                             </ResponsiveNavLink>
                         </div>
                     </div>
-                ) : (
+                )}
+                {!user && (
                     <div className="border-t border-zinc-700 pb-1 pt-4">
                         <div className="mt-3 space-y-1">
                             <ResponsiveNavLink

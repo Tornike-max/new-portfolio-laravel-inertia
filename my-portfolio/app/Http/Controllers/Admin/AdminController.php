@@ -13,10 +13,17 @@ use App\Models\Skill;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        if (Gate::allows('is-admin')) {
+            abort(401);
+        }
+    }
     public function index()
     {
         $projects = ProjectResource::collection(Project::query()->with('user')->get());

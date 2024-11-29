@@ -61,5 +61,6 @@
     "rememberMe": "Remember Me",
     "forgotPassword": "Forgot your password?",
     "alreadyRegistered": "Already Registered?",
-    "name": "Name"
+    "name": "Name",
+    "lastName": "Last Name"
 }

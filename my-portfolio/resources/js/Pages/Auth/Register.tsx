@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
+        lastName: "",
         email: "",
         password: "",
         password_confirmation: "",
@@ -52,6 +53,29 @@ export default function Register() {
                     />
 
                     <InputError message={errors.name} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel
+                        className={`${
+                            isDark ? "text-zinc-100" : "text-zinc-800"
+                        }`}
+                        htmlFor="lastName"
+                        value={t("lastName")}
+                    />
+
+                    <TextInput
+                        id="lastName"
+                        name="lastName"
+                        value={data.lastName}
+                        className="mt-1 block w-full"
+                        autoComplete="lastName"
+                        isFocused={true}
+                        onChange={(e) => setData("lastName", e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.lastName} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
