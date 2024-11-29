@@ -21,6 +21,7 @@ export default function Authenticated({
     children,
 }: PropsWithChildren<{ header?: ReactNode }>) {
     const user = usePage().props.auth.user;
+    const { t } = useTranslation();
 
     const { isDark } = useToggleDarkMode();
 
@@ -68,7 +69,7 @@ export default function Authenticated({
                                             : "text-zinc-700 hover:text-zinc-900"
                                     } text-zinc-300 hover:text-zinc-100`}
                                 >
-                                    Home
+                                    {t("navbarHome")}
                                 </NavLink>
                                 <NavLink
                                     href={route("projects.index")}
@@ -79,7 +80,7 @@ export default function Authenticated({
                                             : "text-zinc-700 hover:text-zinc-900"
                                     } text-zinc-300 hover:text-zinc-100`}
                                 >
-                                    Projects
+                                    {t("navbarProjects")}
                                 </NavLink>
                                 <NavLink
                                     href={route("about.index")}
@@ -90,7 +91,7 @@ export default function Authenticated({
                                             : "text-zinc-700 hover:text-zinc-900"
                                     } text-zinc-300 hover:text-zinc-100`}
                                 >
-                                    About
+                                    {t("navbarAbout")}
                                 </NavLink>
                                 <NavLink
                                     href={route("testimonials.index")}
@@ -103,7 +104,7 @@ export default function Authenticated({
                                             : "text-zinc-700 hover:text-zinc-900"
                                     } text-zinc-300 hover:text-zinc-100`}
                                 >
-                                    Testimonials
+                                    {t("navbarTestimonials")}
                                 </NavLink>
                                 <NavLink
                                     href={route("contact.index")}
@@ -114,7 +115,7 @@ export default function Authenticated({
                                             : "text-zinc-700 hover:text-zinc-900"
                                     } text-zinc-300 hover:text-zinc-100`}
                                 >
-                                    Contact
+                                    {t("navbarContact")}
                                 </NavLink>
                             </div>
                         </div>
@@ -175,7 +176,7 @@ export default function Authenticated({
                                             "admin"
                                         )}
                                     >
-                                        Admin Panel
+                                        {t("adminPanel")}
                                     </NavLink>
                                 </div>
                                 <div className="hidden h-16 md:flex ">
@@ -215,14 +216,14 @@ export default function Authenticated({
                                             <Dropdown.Link
                                                 href={route("profile.edit")}
                                             >
-                                                Profile
+                                                {t("navbarProfile")}
                                             </Dropdown.Link>
                                             <Dropdown.Link
                                                 href={route("logout")}
                                                 method="post"
                                                 as="button"
                                             >
-                                                Log Out
+                                                {t("logout")}
                                             </Dropdown.Link>
                                         </Dropdown.Content>
                                     </Dropdown>
@@ -235,7 +236,7 @@ export default function Authenticated({
                                         href={route("login")}
                                         active={route().current("login")}
                                     >
-                                        Login
+                                        {t("login")}
                                     </NavLink>
                                 </div>
                                 <div className="hidden h-16 sm:-my-px sm:ms-2 md:flex">
@@ -243,7 +244,7 @@ export default function Authenticated({
                                         href={route("register")}
                                         active={route().current("register")}
                                     >
-                                        Register
+                                        {t("register")}
                                     </NavLink>
                                 </div>
                                 <div className="hidden h-16 md:flex ">
@@ -268,35 +269,35 @@ export default function Authenticated({
                         active={route().current("home")}
                         className="text-zinc-300 hover:text-zinc-800"
                     >
-                        Home
+                        {t("navbarHome")}
                     </ResponsiveNavLink>
                     <ResponsiveNavLink
                         href={route("projects.index")}
                         active={route().current("projects.index")}
                         className="text-zinc-300 hover:text-zinc-800"
                     >
-                        Projects
+                        {t("navbarProjects")}
                     </ResponsiveNavLink>
                     <ResponsiveNavLink
                         href={route("about.index")}
                         active={route().current("about.index")}
                         className="text-zinc-300 hover:text-zinc-800"
                     >
-                        About
+                        {t("navbarAbout")}
                     </ResponsiveNavLink>
                     <ResponsiveNavLink
                         href={route("testimonials.index")}
                         active={route().current("testimonials.index")}
                         className="text-zinc-300 hover:text-zinc-800"
                     >
-                        Testimonials
+                        {t("navbarTestimonials")}
                     </ResponsiveNavLink>
                     <ResponsiveNavLink
                         href={route("contact.index")}
                         active={route().current("contact.index")}
                         className="text-zinc-300 hover:text-zinc-800"
                     >
-                        Contact
+                        {t("navbarContact")}
                     </ResponsiveNavLink>
                 </div>
 
@@ -331,13 +332,13 @@ export default function Authenticated({
                                 href={route("admin.index")}
                                 className="text-zinc-300 hover:text-zinc-800"
                             >
-                                Admin Panel
+                                {t("adminPanel")}
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 href={route("profile.edit")}
                                 className="text-zinc-300 hover:text-zinc-800"
                             >
-                                Profile
+                                {t("navbarProfile")}
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 method="post"
@@ -345,7 +346,7 @@ export default function Authenticated({
                                 as="button"
                                 className="text-zinc-300 hover:text-zinc-800"
                             >
-                                Log Out
+                                {t("logout")}
                             </ResponsiveNavLink>
                         </div>
                     </div>
@@ -356,13 +357,13 @@ export default function Authenticated({
                                 href={route("login")}
                                 className="text-zinc-300 hover:text-zinc-800"
                             >
-                                Login
+                                {t("login")}
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 href={route("register")}
                                 className="text-zinc-300 hover:text-zinc-800"
                             >
-                                Register
+                                {t("register")}
                             </ResponsiveNavLink>
                             <div className="w-full flex justify-start items-center">
                                 <DarkMode />

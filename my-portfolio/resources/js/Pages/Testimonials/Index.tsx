@@ -13,10 +13,12 @@ import useToggleDarkMode from "@/context/useToggleDarkMode";
 import { Button, useDisclosure } from "@nextui-org/react";
 import TestimonialModal from "@/Components/TestimonialModal";
 import { formatImage } from "@/functions/helpers";
+import { useTranslation } from "react-i18next";
 
 const Index = ({ testimonials }: PageProps) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [page, setPage] = useState(0);
+    const { t } = useTranslation();
 
     const sliderRef = useRef(null);
     const { isDark } = useToggleDarkMode();
@@ -46,7 +48,7 @@ const Index = ({ testimonials }: PageProps) => {
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight ">
-                    Testimonials
+                    {t("testimonials")}
                 </h2>
             }
         >
@@ -74,11 +76,10 @@ const Index = ({ testimonials }: PageProps) => {
                                     <div className="container mx-auto">
                                         <div className="text-center mb-12">
                                             <h2 className="text-3xl font-bold mb-4">
-                                                What Our Clients Say
+                                                {t("whatClientsSay")}
                                             </h2>
                                             <p className="text-lg text-gray-600 dark:text-gray-400">
-                                                Want to share your experience?
-                                                Add your testimonial below!
+                                                {t("testimonialHeaderContent")}
                                             </p>
                                         </div>
                                         <Swiper
@@ -136,7 +137,7 @@ const Index = ({ testimonials }: PageProps) => {
                                                 variant="solid"
                                                 color="primary"
                                             >
-                                                Add Your Testimonial
+                                                {t("addTestimonial")}
                                             </Button>
                                         </div>
                                         <TestimonialModal

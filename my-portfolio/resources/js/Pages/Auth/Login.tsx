@@ -3,9 +3,11 @@ import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
+import useToggleDarkMode from "@/context/useToggleDarkMode";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { FormEventHandler } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Login({
     status,
@@ -19,6 +21,8 @@ export default function Login({
         password: "",
         remember: false,
     });
+    const { t } = useTranslation();
+    const { isDark } = useToggleDarkMode();
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
@@ -30,7 +34,7 @@ export default function Login({
 
     return (
         <GuestLayout>
-            <Head title="Log in" />
+            <Head title={t("login")} />
 
             {status && (
                 <div className="mb-4 text-sm font-medium text-green-600">
@@ -42,8 +46,10 @@ export default function Login({
                 <div>
                     <InputLabel
                         htmlFor="email"
-                        value="Email"
-                        className="text-zinc-100"
+                        value={t("email")}
+                        className={`${
+                            isDark ? "text-zinc-100" : "text-zinc-800"
+                        }`}
                     />
 
                     <TextInput
@@ -63,8 +69,10 @@ export default function Login({
                 <div className="mt-4">
                     <InputLabel
                         htmlFor="password"
-                        value="Password"
-                        className="text-zinc-100"
+                        value={t("password")}
+                        className={`${
+                            isDark ? "text-zinc-100" : "text-zinc-800"
+                        }`}
                     />
 
                     <TextInput
@@ -90,7 +98,7 @@ export default function Login({
                             }
                         />
                         <span className="ms-2 text-sm text-zinc-100">
-                            Remember me
+                            {t("rememberMe")}
                         </span>
                     </label>
                 </div>
@@ -101,12 +109,12 @@ export default function Login({
                             href={route("password.request")}
                             className="rounded-md text-sm text-zinc-200 underline hover:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
-                            Forgot your password?
+                            {t("forgotPassword")}
                         </Link>
                     )}
 
                     <PrimaryButton className="ms-4" disabled={processing}>
-                        Log in
+                        {t("login")}
                     </PrimaryButton>
                 </div>
             </form>

@@ -6,9 +6,11 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
 import { Head, useForm } from "@inertiajs/react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const Index = ({ about }: PageProps) => {
     const { isDark } = useToggleDarkMode();
+    const { t } = useTranslation();
 
     const { post, processing, data, setData, errors } = useForm({
         name: "",
@@ -24,11 +26,11 @@ const Index = ({ about }: PageProps) => {
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight ">
-                    Contact
+                    {t("contactPageHeader")}
                 </h2>
             }
         >
-            <Head title="Contact" />
+            <Head title={t("contactPageHeader")} />
 
             <div className="py-12">
                 <div className="mx-auto max-w-8xl sm:px-6 lg:px-8">
@@ -53,16 +55,13 @@ const Index = ({ about }: PageProps) => {
                                                 } `}
                                             >
                                                 <span className="mb-4 block text-base font-semibold text-primary">
-                                                    Contact Me
+                                                    {t("headerContact")}
                                                 </span>
                                                 <h2 className="mb-6 text-[32px] font-bold uppercase sm:text-[40px] lg:text-[36px] xl:text-[40px]">
-                                                    Get in Touch
+                                                    {t("getInTouch")}
                                                 </h2>
                                                 <p className="mb-9 text-base leading-relaxed ">
-                                                    Feel free to share your
-                                                    thoughts, questions, or
-                                                    feedback. I’m always open to
-                                                    connecting!
+                                                    {t("contactContent")}
                                                 </p>
                                                 <div className="mb-8 flex w-full max-w-[370px]">
                                                     <div className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary/5 text-primary sm:h-[70px] sm:max-w-[70px]">
@@ -81,7 +80,7 @@ const Index = ({ about }: PageProps) => {
                                                     </div>
                                                     <div className="w-full">
                                                         <h4 className="mb-1 text-xl font-bold ">
-                                                            My Location
+                                                            {t("myLocation")}
                                                         </h4>
                                                         <p className="text-base flex items-center gap-2">
                                                             <span>
@@ -132,7 +131,7 @@ const Index = ({ about }: PageProps) => {
                                                     </div>
                                                     <div className="w-full">
                                                         <h4 className="mb-1 text-xl font-bold ">
-                                                            Phone Number
+                                                            {t("PhoneNumber")}
                                                         </h4>
                                                         <p className="text-base">
                                                             (+995){" "}
@@ -158,7 +157,7 @@ const Index = ({ about }: PageProps) => {
                                                     </div>
                                                     <div className="w-full">
                                                         <h4 className="mb-1 text-xl font-bold ">
-                                                            Email Address
+                                                            {t("EmailAddress")}
                                                         </h4>
                                                         <p className="text-base">
                                                             {about?.user.email}
@@ -179,7 +178,9 @@ const Index = ({ about }: PageProps) => {
                                                     <ContactInputBox
                                                         type="text"
                                                         name="name"
-                                                        placeholder="Your Name"
+                                                        placeholder={t(
+                                                            "yourName"
+                                                        )}
                                                         setData={setData}
                                                         error={
                                                             errors?.name || ""
@@ -188,7 +189,9 @@ const Index = ({ about }: PageProps) => {
                                                     <ContactInputBox
                                                         type="text"
                                                         name="email"
-                                                        placeholder="Your Email"
+                                                        placeholder={t(
+                                                            "yourEmail"
+                                                        )}
                                                         setData={setData}
                                                         error={
                                                             errors?.email || ""
@@ -197,7 +200,9 @@ const Index = ({ about }: PageProps) => {
                                                     <ContactInputBox
                                                         type="text"
                                                         name="phone"
-                                                        placeholder="Your Phone"
+                                                        placeholder={t(
+                                                            "yourPhone"
+                                                        )}
                                                         setData={setData}
                                                         error={
                                                             errors?.phone || ""
@@ -205,7 +210,9 @@ const Index = ({ about }: PageProps) => {
                                                     />
                                                     <ContactTextArea
                                                         row={6}
-                                                        placeholder="Your Message"
+                                                        placeholder={t(
+                                                            "yourMessage"
+                                                        )}
                                                         name="message"
                                                         defaultValue=""
                                                         setData={setData}
