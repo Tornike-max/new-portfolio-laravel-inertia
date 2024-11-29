@@ -1,28 +1,37 @@
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
-import { useLaravelReactI18n } from "laravel-react-i18n";
 import { useForm } from "@inertiajs/react";
+import { useEffect } from "react";
 
 const LanguageSwitcher = () => {
     const { t } = useTranslation();
-    const { setLocale, currentLocale } = useLaravelReactI18n();
     const { post, data, setData } = useForm({
-        lang: currentLocale(),
+        lang: "",
     });
-    const handleChangeLang = (e: { target: { value: string } }) => {
-        // const locale = e.target.value;
-        // setLocale(locale);
+    useEffect(() => {
+        if (localStorage.getItem("lang")) {
+            setData("lang", String(localStorage.getItem("lang")));
+            i18next.changeLanguage(
+                String(localStorage.getItem("lang")),
+                (err, t) => {
+                    if (err)
+                        throw new Error(
+                            "something went wrong while translating",
+                            err
+                        );
+                }
+            );
+        }
+    }, []);
 
-        // setData("lang", locale);
-        // post(route("language.switch"));
+    const handleChangeLang = (e: { target: { value: string } }) => {
         setData("lang", e.target.value);
+        localStorage.setItem("lang", e.target.value);
         i18next.changeLanguage(e.target.value, (err, t) => {
             if (err)
                 throw new Error("something went wrong while translating", err);
         });
     };
-
-    console.log(data.lang);
 
     return (
         <div className="flex gap-2 items-center">
