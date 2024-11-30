@@ -8,7 +8,7 @@ const HeaderBlock = ({ isDark }: { isDark: boolean }) => {
     return (
         <Block className="col-span-12 row-span-2 md:col-span-6">
             <img
-                src="https://api.dicebear.com/8.x/lorelei-neutral/svg?seed=John"
+                src="./images/my-image.jpg"
                 alt="avatar"
                 className="mb-4 size-14 rounded-full"
             />

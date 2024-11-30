@@ -6,7 +6,7 @@ import EmailListBlock from "@/Components/EmailListBlock";
 import Footer from "@/Components/Footer";
 import HeaderBlock from "@/Components/HeaderBlock";
 import LocationBlock from "@/Components/LocationBlock";
-import Logo from "@/Components/Logo";
+import Title from "@/Components/Title";
 import SocialsBlock from "@/Components/SocialsBlock";
 import { PageProps } from "@/types";
 import useToggleDarkMode from "@/context/useToggleDarkMode";
@@ -35,7 +35,7 @@ export default function Dashboard({ auth, myData }: PageProps) {
                     >
                         <div className="p-6 text-gray-900">
                             <div className="min-h-screen w-full text-gray-50">
-                                <Logo />
+                                <Title />
                                 <motion.div
                                     initial="initial"
                                     animate="animate"

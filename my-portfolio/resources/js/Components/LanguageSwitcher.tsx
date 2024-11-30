@@ -41,7 +41,7 @@ const LanguageSwitcher = () => {
                 name="lang"
                 onChange={handleChangeLang}
                 value={data.lang}
-                className="rounded border p-2"
+                className="rounded border p-2 text-zinc-800"
             >
                 <option value="en">English</option>
                 <option value="ka">ქართული</option>
